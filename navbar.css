@@ -1,0 +1,714 @@
+/*==================================
+        MOBILE NAVBAR
+==================================*/
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    z-index:1000;
+
+    background:rgba(0,0,0,.55);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.nav-wrapper{
+
+    height:70px;
+
+    padding:0 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+.logo{
+
+    font-size:24px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+}
+
+.logo-white{
+
+    color:#fff;
+
+}
+
+.logo-orange{
+
+    color:#FF8C00;
+
+}
+
+.menu-btn{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.05);
+
+    color:white;
+
+    font-size:24px;
+
+}
+/*=========================================
+        FREEFIREXIPL MENU V3
+==========================================*/
+
+.menu-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(8px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:999;
+
+}
+
+.menu-overlay.active{
+
+    opacity:1;
+    visibility:visible;
+
+}
+
+/*============================*/
+
+.mobile-menu{
+
+    position:fixed;
+
+    top:0;
+    right:-100%;
+
+    width:86%;
+    height:100vh;
+
+    background:#0A0A0A;
+
+    display:flex;
+    flex-direction:column;
+
+    transition:.45s ease;
+
+    z-index:1000;
+
+    border-left:1px solid rgba(255,255,255,.08);
+
+    box-shadow:-10px 0 35px rgba(0,0,0,.45);
+
+    overflow-y:auto;
+
+}
+
+.mobile-menu.active{
+
+    right:0;
+
+}
+
+/*============================*/
+
+.menu-header{
+
+    padding:28px 22px;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.menu-logo h2{
+
+    color:#fff;
+
+    font-size:24px;
+
+    font-weight:900;
+
+}
+
+.menu-logo span{
+
+    color:#FF8C00;
+
+}
+
+.menu-logo p{
+
+    color:#999;
+
+    font-size:12px;
+
+    margin-top:6px;
+
+}
+
+/*============================*/
+
+.close-menu{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.05);
+
+    color:#fff;
+
+    font-size:20px;
+
+}
+
+/*============================*/
+
+.menu-links{
+
+    padding:20px;
+
+}
+
+.menu-links a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:18px;
+
+    margin-bottom:12px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.04);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    transition:
+        transform .25s,
+        background .25s,
+        border-color .25s,
+        box-shadow .25s;
+
+    border:1px solid transparent;
+
+}
+
+.menu-links a:hover{
+
+    transform:translateX(6px);
+
+    border-color:rgba(255,140,0,.25);
+
+}
+
+.menu-links a:active{
+
+    transform:scale(.98);
+
+}
+
+.menu-links a span{
+
+    flex:1;
+
+    font-weight:600;
+
+}
+
+.menu-links a small{
+
+    color:#FF8C00;
+
+    font-size:22px;
+
+}
+
+/*=================================
+      ACTIVE MENU ITEM
+=================================*/
+
+.menu-links a.active{
+
+    background:linear-gradient(
+        90deg,
+        rgba(255,45,45,.22),
+        rgba(255,140,0,.15)
+    );
+
+    border:1px solid rgba(255,140,0,.35);
+
+    box-shadow:0 8px 24px rgba(255,80,0,.18);
+
+}
+
+.menu-links a.active i{
+
+    color:#FFD166;
+
+}
+
+.menu-links a.active span{
+
+    color:#fff;
+
+    font-weight:700;
+
+}
+
+/*============================*/
+
+.menu-season-card{
+
+    margin:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:linear-gradient(135deg,#FF2D2D,#FF8C00);
+
+}
+
+.menu-season-card h3{
+
+    color:#fff;
+
+}
+
+.menu-season-card p{
+
+    color:#fff;
+
+    opacity:.9;
+
+    margin:10px 0;
+
+}
+
+.menu-season-card button{
+
+    width:100%;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    font-weight:700;
+
+}
+
+/*============================*/
+
+.menu-social{
+
+    display:flex;
+
+    justify-content:space-evenly;
+
+    padding:24px;
+
+}
+
+.menu-social a{
+
+    width:52px;
+
+    height:52px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.05);
+
+    text-decoration:none;
+
+    font-size:22px;
+
+}
+
+.mobile-menu a{
+
+    color:#fff;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.05);
+
+    transition:.3s;
+
+}
+
+.mobile-menu a:active{
+
+    transform:scale(.97);
+
+    background:rgba(255,140,0,.15);
+
+}
+/*=================================
+    FLOATING BOTTOM NAVIGATION
+=================================*/
+
+.bottom-nav{
+
+    position:fixed;
+
+    bottom:15px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:92%;
+
+    height:72px;
+
+    background:rgba(10,10,10,.88);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    z-index:999;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.45);
+
+}
+
+.nav-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    color:#888;
+
+    font-size:12px;
+
+    transition:.3s;
+
+}
+
+.nav-item span{
+
+    font-size:22px;
+
+    margin-bottom:4px;
+
+}
+
+.nav-item.active{
+
+    color:#FF8C00;
+
+}
+
+.nav-item:active{
+
+    transform:scale(.92);
+
+}
+
+body{
+
+    padding-bottom:95px;
+
+}
+
+/*=====================================
+      FREEFIREXIPL MENU BUTTON V2
+======================================*/
+
+.menu-btn{
+    width:54px;
+    height:54px;
+    border:none;
+    background:transparent;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+}
+
+.menu-core{
+    width:54px;
+    height:54px;
+    border-radius:18px;
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    gap:6px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(16px);
+
+    border:1px solid rgba(255,140,0,.25);
+
+    box-shadow:
+        0 0 20px rgba(255,80,0,.18),
+        inset 0 1px 1px rgba(255,255,255,.08);
+
+    transition:.35s;
+}
+
+.menu-core::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:2px;
+
+    border-radius:16px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+}
+
+.menu-core span{
+
+    width:22px;
+    height:2.5px;
+
+    border-radius:20px;
+
+    background:linear-gradient(90deg,#FF2D2D,#FF8C00);
+
+    transition:.35s;
+}
+
+.menu-core span:nth-child(2){
+
+    width:16px;
+
+}
+
+.menu-core span:nth-child(3){
+
+    width:10px;
+
+}
+
+.menu-btn:active .menu-core{
+
+    transform:scale(.92) rotate(90deg);
+
+}
+
+.menu-core:hover{
+
+    border-color:#FF8C00;
+
+    box-shadow:
+        0 0 30px rgba(255,140,0,.45);
+
+}
+
+.mobile-menu.active .menu-links a:nth-child(1){animation-delay:.10s;}
+.mobile-menu.active .menu-links a:nth-child(2){animation-delay:.15s;}
+.mobile-menu.active .menu-links a:nth-child(3){animation-delay:.20s;}
+.mobile-menu.active .menu-links a:nth-child(4){animation-delay:.25s;}
+.mobile-menu.active .menu-links a:nth-child(5){animation-delay:.30s;}
+.mobile-menu.active .menu-links a:nth-child(6){animation-delay:.35s;}
+.mobile-menu.active .menu-links a:nth-child(7){animation-delay:.40s;}
+.mobile-menu.active .menu-links a:nth-child(8){animation-delay:.45s;}
+.mobile-menu.active .menu-links a:nth-child(9){animation-delay:.50s;}
+
+@keyframes menuItem{
+
+    from{
+
+        opacity:0;
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateX(0);
+
+    }
+
+}
+.menu-links i{
+
+    width:22px;
+
+    height:22px;
+
+    color:#FF8C00;
+
+    flex-shrink:0;
+
+}
+
+.menu-links a:hover i{
+
+    transform:scale(1.15);
+
+    transition:.3s;
+
+}
+/*=================================
+      MENU PROFILE HEADER
+=================================*/
+
+.menu-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.user-avatar{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        #FF2D2D,
+        #FF8C00
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-weight:900;
+
+    font-size:18px;
+
+    box-shadow:0 0 25px rgba(255,140,0,.35);
+
+}
+
+.user-info h3{
+
+    color:#fff;
+
+    font-size:16px;
+
+}
+
+.user-info p{
+
+    color:#FF8C00;
+
+    font-size:12px;
+
+    margin-top:4px;
+
+}
+.season-badge{
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.2);
+
+    margin-bottom:10px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+.menu-btn {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.menu-btn:focus-visible{
+    outline: none;
+}
+.menu-btn:active {
+    background: orange;
+    outline: none;
+    box-shadow: none;
+}
