@@ -49,7 +49,7 @@
 
 .spotlight{
     padding:120px 0;
-    background:#050505;
+    background:transparent;
 }
 
 .section-title{
@@ -139,9 +139,9 @@
 }
 
 .stat-card{
-    padding:40px;
+    padding:40px 30px;
     text-align:center;
-    background:rgba(255,255,255,.04);
+    background:rgba(12, 192, 192, 0.04);
     border:1px solid rgba(255,255,255,.08);
     border-radius:24px;
     transition:.4s;
@@ -170,7 +170,7 @@
 
     padding:60px 20px;
 
-    background:#050505;
+    background :rgba(161, 210, 26, 0.04);
 
 }
 
@@ -285,7 +285,7 @@
 
     padding:25px 20px 60px;
 
-    background:#050505;
+    background:none;
 
 }
 
@@ -293,7 +293,7 @@
 
     background:linear-gradient(
     180deg,
-    rgba(255,45,45,.12),
+    rgba(9, 214, 166, 0.12),
     rgba(255,140,0,.08));
 
     border:1px solid rgba(255,255,255,.08);
@@ -318,7 +318,7 @@
 
     background:#ff2d2d;
 
-    color:white;
+    color:rgb(255, 255, 255);
 
     padding:6px 12px;
 
@@ -360,7 +360,7 @@
 
 .info-box{
 
-    background:rgba(255,255,255,.04);
+    background:transparent;
 
     border-radius:16px;
 
@@ -425,7 +425,7 @@
 
 .countdown{
     padding:20px;
-    background:#050505;
+    background:transparent;
 }
 
 .countdown-card{
@@ -477,7 +477,7 @@
 
 .matches{
     padding:20px;
-    background:#050505;
+    background:transparent;
 }
 
 .section-heading span{
@@ -493,7 +493,7 @@
 }
 
 .match-card{
-    background:rgba(255,255,255,.05);
+    background:transparent;
     border:1px solid rgba(255,255,255,.08);
     border-radius:22px;
     padding:20px;
@@ -540,7 +540,7 @@
     text-align:center;
     padding:10px;
     border-radius:12px;
-    background:rgba(255,140,0,.15);
+    background:transparent;
     color:#FF8C00;
     font-weight:700;
 }
@@ -550,11 +550,11 @@
 
 .leaderboard{
     padding:20px;
-    background:#050505;
+    background:transparent;
 }
 
 .leaderboard-card{
-    background:rgba(255,255,255,.05);
+    background:transparent;
     border:1px solid rgba(255,255,255,.08);
     border-radius:22px;
     overflow:hidden;
@@ -569,7 +569,7 @@
 }
 
 .leaderboard-row.first{
-    background:rgba(255,140,0,.12);
+    background:transparent;
 }
 
 .rank{
@@ -590,11 +590,11 @@
 }
 
 .view-btn{
-    display:block;
-    margin:18px;
+    display:inline-block;
+    margin:auto ;
     text-align:center;
     padding:16px;
-    border-radius:16px;
+    border-radius:20px;
     background:linear-gradient(90deg,#FF2D2D,#FF8C00);
     color:#fff;
     font-weight:700;
@@ -605,7 +605,7 @@
 
 .teams-preview{
     padding:20px;
-    background:#050505;
+    background:transparent;
 }
 
 .team-slider{
@@ -622,7 +622,7 @@
 
 .team-card{
     min-width:260px;
-    background:rgba(255,255,255,.05);
+    background:transparent;
     border:1px solid rgba(255,255,255,.08);
     border-radius:22px;
     padding:20px;
@@ -635,7 +635,7 @@
     height:80px;
     margin:0 auto 16px;
     border-radius:50%;
-    background:rgba(255,255,255,.06);
+    background:transparent;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -671,7 +671,7 @@
 
 .players-preview{
     padding:20px;
-    background:#050505;
+    background:transparent;
 }
 
 .player-slider{
@@ -688,7 +688,7 @@
 
 .player-card{
     min-width:220px;
-    background:rgba(255,255,255,.05);
+    background:transparent;
     border:1px solid rgba(255,255,255,.08);
     border-radius:22px;
     padding:20px;
@@ -725,7 +725,7 @@
 
 .gallery-preview{
     padding:20px;
-    background:#050505;
+    background:transparent;
 }
 
 .gallery-grid{
@@ -751,13 +751,14 @@
     color:#fff;
     font-weight:700;
 }
+
 /*=============================
         SPONSORS
 =============================*/
 
 .sponsors{
     padding:20px;
-    background:#050505;
+    background:transparent;
 }
 
 .sponsors-slider{
@@ -774,7 +775,7 @@
 .sponsor-card{
     min-width:140px;
     height:90px;
-    background:rgba(255,255,255,.05);
+    background:transparent;
     border:1px solid rgba(255,255,255,.08);
     border-radius:18px;
     display:flex;
@@ -795,7 +796,7 @@
 
     padding:40px 20px;
 
-    background:#000;
+    background:transparent;
 
     text-align:center;
 
@@ -900,4 +901,11 @@
 .spotlight-content p{
     color:#ddd;
     margin-top:8px;
+}
+section{
+
+    padding:100px 0;
+
+    background:transparent;
+
 }

@@ -1,6 +1,6 @@
 // Tournament Countdown
 
-const targetDate = new Date("July 31, 2026 18:00:00").getTime();
+const targetDate = new Date("June 30, 2026 16:40:00").getTime();
 
 setInterval(() => {
 

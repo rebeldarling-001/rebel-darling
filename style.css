@@ -11,7 +11,7 @@ html{
 
 body{
     overflow-x:hidden;
-    background:#000;
+    background:#ce8806;
 }
 
 section{
@@ -115,7 +115,7 @@ section{
 
     position:relative;
 
-    background:rgba(255,255,255,.04);
+    background:rgba(230, 23, 23, 0.815);
 
     backdrop-filter:blur(18px);
 
@@ -363,5 +363,12 @@ p{
     box-shadow:var(--shadow);
 
     border:1px solid rgba(255,255,255,.08);
+
+}
+section{
+
+    padding:100px 0;
+
+    background:transparent;
 
 }

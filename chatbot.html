@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FFXIPL AI Assistant</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="chatbot.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body>
+
+<div class="chatbot-container">
+
+<button class="chat-toggle" id="chatToggle">
+
+<div class="chat-glow"></div>
+
+<i data-lucide="bot"></i>
+
+</button>
+
+<div class="chat-window" id="chatWindow">
+
+<div class="chat-header">
+
+<div class="assistant-info">
+
+<div class="assistant-avatar">
+
+🤖
+
+</div>
+
+<div>
+
+<h3>FFXIPL AI</h3>
+
+<p>
+
+<span class="online-dot"></span>
+
+Online • Tournament Assistant
+
+</p>
+
+</div>
+
+</div>
+
+<button id="closeChat">
+
+<i data-lucide="x"></i>
+
+</button>
+
+</div>
+
+<div class="chat-messages" id="chatMessages">
+
+<div class="bot-message">
+
+👋 Hello Champion!
+
+Welcome to <b>FREEFIREXIPL</b>.
+
+I'm your personal tournament assistant.
+
+Choose an option below or ask me anything.
+
+</div>
+
+<div class="quick-actions">
+
+<button class="quick-btn">
+
+📅 Schedule
+
+</button>
+
+<button class="quick-btn">
+
+📝 Register
+
+</button>
+
+<button class="quick-btn">
+
+🏆 Prize Pool
+
+</button>
+
+<button class="quick-btn">
+
+👥 Teams
+
+</button>
+
+<button class="quick-btn">
+
+📞 Contact
+
+</button>
+
+<button class="quick-btn">
+
+📜 Rules
+
+</button>
+
+</div>
+
+</div>
+
+<div class="chat-input-area">
+
+<input
+
+type="text"
+
+id="chatInput"
+
+placeholder="Type your question...">
+
+<button id="sendBtn">
+
+<i data-lucide="send"></i>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="chatbot.js"></script>
+
+<script>
+
+lucide.createIcons();
+
+</script>
+
+</body>
+
+</html>

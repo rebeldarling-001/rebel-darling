@@ -1,22 +1,25 @@
 /*=========================================
-        POINTS TABLE PAGE
+        FREEFIREXIPL
+          POINTS TABLE
 =========================================*/
 
 :root{
 
     --primary:#FF2D2D;
     --secondary:#FF8C00;
-    --dark:#000;
-    --card:#0D0D0D;
-    --text:#fff;
-    --muted:#BDBDBD;
+    --bg:#050505;
+    --card:#101010;
+    --border:rgba(255,255,255,.08);
+    --text:#FFFFFF;
+    --muted:#AFAFAF;
 
 }
 
 body{
 
-    background:#000;
-    color:#fff;
+    background:var(--bg);
+
+    color:var(--text);
 
 }
 
@@ -40,19 +43,19 @@ body{
 
     position:absolute;
 
-    width:280px;
+    width:320px;
 
-    height:280px;
-
-    border-radius:50%;
+    height:320px;
 
     background:#FF8C00;
 
-    filter:blur(120px);
+    border-radius:50%;
+
+    filter:blur(130px);
 
     opacity:.18;
 
-    top:-80px;
+    top:-130px;
 
     left:50%;
 
@@ -66,7 +69,7 @@ body{
 
     padding:8px 18px;
 
-    border-radius:999px;
+    border-radius:50px;
 
     background:rgba(255,140,0,.12);
 
@@ -84,7 +87,7 @@ body{
 
     margin-top:20px;
 
-    font-size:38px;
+    font-size:40px;
 
     font-weight:900;
 
@@ -94,7 +97,7 @@ body{
 
     margin-top:14px;
 
-    color:#BDBDBD;
+    color:var(--muted);
 
     line-height:1.8;
 
@@ -108,21 +111,11 @@ body{
 
     text-align:center;
 
-    margin-bottom:28px;
+    margin-bottom:30px;
 
 }
 
 .section-title span{
-
-    display:inline-block;
-
-    padding:7px 16px;
-
-    border-radius:999px;
-
-    background:rgba(255,140,0,.12);
-
-    border:1px solid rgba(255,140,0,.25);
 
     color:#FF8C00;
 
@@ -134,10 +127,424 @@ body{
 
 .section-title h2{
 
-    margin-top:14px;
+    margin-top:10px;
 
     font-size:30px;
 
     font-weight:800;
+
+}
+
+/*=========================================
+        TABLE AREA
+=========================================*/
+
+.points-table{
+
+    padding:20px 16px 90px;
+
+}
+
+.points-table-wrapper{
+
+    overflow-x:auto;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid var(--border);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+/*=========================================
+        TABLE
+=========================================*/
+
+.points-table-grid{
+
+    width:100%;
+
+    min-width:700px;
+
+    border-collapse:collapse;
+
+}
+
+.points-table-grid thead{
+
+    background:linear-gradient(
+        90deg,
+        #FF2D2D,
+        #FF8C00
+    );
+
+}
+
+.points-table-grid th{
+
+    padding:18px 14px;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    text-align:center;
+
+    white-space:nowrap;
+
+    letter-spacing:.5px;
+
+}
+
+.points-table-grid td{
+
+    padding:18px 14px;
+
+    text-align:center;
+
+    color:#fff;
+
+    font-size:14px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+.points-table-grid tbody tr{
+
+    background:transparent;
+
+    transition:.3s;
+
+}
+
+.points-table-grid tbody tr:hover{
+
+    background:rgba(255,140,0,.08);
+
+}
+
+.points-table-grid tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+/*=========================================
+        TEAM COLUMN
+=========================================*/
+
+.points-table-grid td:nth-child(2){
+
+    text-align:left;
+
+    font-weight:700;
+
+}
+
+/*=========================================
+        TOP 3 ROWS
+=========================================*/
+
+.first{
+
+    background:rgba(255,215,0,.12);
+
+}
+
+.second{
+
+    background:rgba(192,192,192,.10);
+
+}
+
+.third{
+
+    background:rgba(205,127,50,.12);
+
+}
+
+.first td:first-child{
+
+    color:#FFD700;
+
+    font-weight:800;
+
+}
+
+.second td:first-child{
+
+    color:#C0C0C0;
+
+    font-weight:800;
+
+}
+
+.third td:first-child{
+
+    color:#CD7F32;
+
+    font-weight:800;
+
+}
+/*=========================================
+        PREMIUM EFFECTS
+=========================================*/
+
+.points-table-grid tbody tr{
+
+    transition:
+        transform .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.points-table-grid tbody tr:hover{
+
+    transform:scale(1.01);
+
+    box-shadow:0 8px 20px rgba(255,140,0,.15);
+
+}
+
+/*=========================================
+        TABLE ANIMATION
+=========================================*/
+
+@keyframes tableFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.points-table-wrapper{
+
+    animation:tableFade .8s ease;
+
+}
+
+/*=========================================
+        SCROLLBAR
+=========================================*/
+
+.points-table-wrapper::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.points-table-wrapper::-webkit-scrollbar-track{
+
+    background:#111;
+
+    border-radius:20px;
+
+}
+
+.points-table-wrapper::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        90deg,
+        #FF2D2D,
+        #FF8C00
+    );
+
+    border-radius:20px;
+
+}
+
+/*=========================================
+        RESPONSIVE
+=========================================*/
+
+@media(max-width:768px){
+
+    .points-table-grid{
+
+        min-width:700px;
+
+    }
+
+    .points-hero h1{
+
+        font-size:34px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .points-hero{
+
+        padding:100px 16px 60px;
+
+    }
+
+    .points-hero h1{
+
+        font-size:30px;
+
+    }
+
+    .section-title h2{
+
+        font-size:24px;
+
+    }
+
+    .points-table{
+
+        padding:20px 12px 90px;
+
+    }
+
+}
+/*=========================================
+        TOP 3 PREMIUM STYLING
+=========================================*/
+
+.first{
+
+    border-left:4px solid #FFD700;
+
+}
+
+.second{
+
+    border-left:4px solid #C0C0C0;
+
+}
+
+.third{
+
+    border-left:4px solid #CD7F32;
+
+}
+
+.first td{
+
+    font-weight:700;
+
+}
+
+.second td{
+
+    font-weight:700;
+
+}
+
+.third td{
+
+    font-weight:700;
+
+}
+
+/*=========================================
+        FOOTER
+=========================================*/
+
+.footer{
+
+    padding:50px 20px 110px;
+
+    text-align:center;
+
+    background:#050505;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.footer h2{
+
+    font-size:28px;
+
+    font-weight:900;
+
+    color:#fff;
+
+}
+
+.footer h2 span{
+
+    color:#FF8C00;
+
+}
+
+.footer p{
+
+    margin-top:12px;
+
+    color:#9E9E9E;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+}
+
+/*=========================================
+        SMOOTH TRANSITIONS
+=========================================*/
+
+.points-table-grid th,
+.points-table-grid td,
+.points-table-wrapper,
+.points-hero,
+.section-title{
+
+    transition:.35s ease;
+
+}
+
+/*=========================================
+        EXTRA SMALL DEVICES
+=========================================*/
+
+@media(max-width:360px){
+
+    .points-hero h1{
+
+        font-size:26px;
+
+    }
+
+    .hero-badge{
+
+        font-size:11px;
+
+        padding:7px 14px;
+
+    }
+
+    .section-title h2{
+
+        font-size:22px;
+
+    }
 
 }

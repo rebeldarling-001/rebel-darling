@@ -1,0 +1,278 @@
+chatbot.html — Part 1
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>FFXIPL AI Assistant</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="css/chatbot.css">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body>
+
+<div class="ffxipl-chatbot">
+
+<button
+class="chatbot-button"
+id="chatbotButton">
+
+<div class="chatbot-glow"></div>
+
+<i data-lucide="bot"></i>
+
+</button>
+
+<div
+class="chatbot-panel"
+id="chatbotPanel">
+
+<header class="chat-header">
+
+<div class="chat-profile">
+
+<div class="chat-avatar">
+
+🤖
+
+</div>
+
+<div class="chat-info">
+
+<h2>
+
+FFXIPL AI
+
+</h2>
+
+<p>
+
+<span class="online-status"></span>
+
+Online • FREEFIREXIPL Assistant
+
+</p>
+
+</div>
+
+</div>
+
+<button
+class="chat-close"
+id="chatClose">
+
+<i data-lucide="x"></i>
+
+</button>
+
+</header>
+
+<main
+class="chat-body"
+id="chatBody">
+
+<section class="welcome-card">
+
+<div class="welcome-icon">
+
+🤖
+
+</div>
+
+<h3>
+
+Welcome Champion!
+
+</h3>
+
+<p>
+
+I'm the official FREEFIREXIPL AI Assistant.
+
+I can help you with registrations, tournaments, schedules, teams, auctions, players, rules, announcements and much more.
+
+</p>
+
+</section>
+
+<section class="suggestions">
+
+<button class="quick-chip">
+
+📝 Registration
+
+</button>
+
+<button class="quick-chip">
+
+📅 Schedule
+
+</button>
+
+<button class="quick-chip">
+
+🏆 Prize Pool
+
+</button>
+
+<button class="quick-chip">
+
+👥 Teams
+
+</button>
+
+<button class="quick-chip">
+
+🎮 Players
+
+</button>
+
+<button class="quick-chip">
+
+💰 Auction
+
+</button>
+
+<button class="quick-chip">
+
+📜 Rules
+
+</button>
+
+<button class="quick-chip">
+
+📞 Contact
+
+</button>
+
+</section>
+
+<div
+id="messages">
+
+<div class="message bot-message">
+
+👋 Hello Champion!
+
+Welcome to FREEFIREXIPL.
+
+How can I help you today?
+
+</div>
+
+<div class="message bot-message">
+
+You can ask me things like:
+
+<br><br>
+
+🏆 "Who won Season 10?"
+
+<br>
+
+📅 "When is the next tournament?"
+
+<br>
+
+📝 "How do I register?"
+
+<br>
+
+👥 "Show all teams"
+
+<br>
+
+🎮 "Player auction"
+
+<br>
+
+📜 "Tournament rules"
+
+</div>
+
+</div>
+
+<footer class="chat-footer">
+
+<div class="chat-input-container">
+
+<button
+
+class="chat-action-btn"
+
+id="attachmentBtn"
+
+type="button">
+
+<i data-lucide="plus"></i>
+
+</button>
+
+<input
+
+type="text"
+
+id="chatInput"
+
+class="chat-input"
+
+placeholder="Ask anything about FREEFIREXIPL...">
+
+<button
+
+id="sendButton"
+
+class="send-button"
+
+type="button">
+
+<i data-lucide="send-horizontal"></i>
+
+</button>
+
+</div>
+
+<div class="chat-footer-note">
+
+🏆 FREEFIREXIPL AI Assistant • Tournament Support 24×7
+
+</div>
+
+</footer>
+
+</main>
+</div>
+
+</div>
+
+<script src="js/chatbot.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded",function(){
+
+lucide.createIcons();
+
+});
+
+</script>
+
+</body>
+
+</html>
