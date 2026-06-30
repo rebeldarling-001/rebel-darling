@@ -1,0 +1,689 @@
+/*=========================================
+        FREEFIREXIPL V2
+          TEAMS PAGE
+==========================================*/
+
+:root{
+
+    --primary:#FF2D2D;
+    --secondary:#FF8C00;
+    --dark:#000;
+    --card:#0D0D0D;
+    --text:#fff;
+    --muted:#B8B8B8;
+
+}
+
+body{
+
+    background:#000;
+    color:#fff;
+
+}
+
+/*=========================================
+              HERO
+==========================================*/
+
+.teams-hero{
+
+    position:relative;
+
+    padding:110px 20px 70px;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+.hero-glow{
+
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    border-radius:50%;
+
+    background:#ff6b00;
+
+    filter:blur(130px);
+
+    opacity:.18;
+
+    top:-90px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,140,0,.12);
+
+    border:1px solid rgba(255,140,0,.25);
+
+    color:#FF8C00;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.teams-hero h1{
+
+    margin-top:18px;
+
+    font-size:38px;
+
+    font-weight:900;
+
+}
+
+.teams-hero p{
+
+    margin-top:15px;
+
+    color:#BDBDBD;
+
+    line-height:1.8;
+
+}
+
+/*=========================================
+            SEARCH
+==========================================*/
+
+.search-section{
+
+    padding:20px;
+
+}
+
+.team-search{
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    outline:none;
+
+    padding:0 20px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#fff;
+
+    font-size:15px;
+
+}
+
+.team-search::placeholder{
+
+    color:#8E8E8E;
+
+}
+
+/*=========================================
+        FEATURED TEAM
+==========================================*/
+
+.featured-team{
+
+    padding:20px;
+
+}
+
+.featured-card{
+
+    text-align:center;
+
+    padding:35px 25px;
+
+    border-radius:28px;
+
+    background:linear-gradient(
+        145deg,
+        rgba(255,45,45,.16),
+        rgba(255,140,0,.12)
+    );
+
+    border:1px solid rgba(255,140,0,.25);
+
+}
+
+.team-logo{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #FF2D2D,
+        #FF8C00
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:34px;
+
+    font-weight:800;
+
+}
+
+.featured-card h2{
+
+    margin-top:22px;
+
+    font-size:28px;
+
+}
+
+.featured-card p{
+
+    margin-top:10px;
+
+    color:#D6D6D6;
+
+}
+
+.featured-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:14px;
+
+    margin-top:26px;
+
+}
+
+.featured-stats div{
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:18px;
+
+    padding:18px;
+
+}
+
+.featured-stats h3{
+
+    color:#FF8C00;
+
+    font-size:22px;
+
+}
+
+.featured-stats span{
+
+    font-size:12px;
+
+    color:#A8A8A8;
+
+}
+/*=========================================
+            SECTION TITLE
+==========================================*/
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:28px;
+
+}
+
+.section-title span{
+
+    display:inline-block;
+
+    padding:7px 16px;
+
+    border-radius:999px;
+
+    background:rgba(255,140,0,.12);
+
+    border:1px solid rgba(255,140,0,.25);
+
+    color:#FF8C00;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.section-title h2{
+
+    margin-top:14px;
+
+    font-size:30px;
+
+    font-weight:800;
+
+}
+
+/*=========================================
+            TEAM GRID
+==========================================*/
+
+.teams-grid{
+
+    padding:20px 20px 80px;
+
+}
+
+.team-grid{
+
+    display:grid;
+
+    gap:18px;
+
+}
+
+/*=========================================
+            TEAM CARD
+==========================================*/
+
+.team-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:22px;
+
+    backdrop-filter:blur(18px);
+
+    transition:.35s;
+
+}
+
+.team-card:active{
+
+    transform:scale(.98);
+
+}
+
+.team-card:hover{
+
+    border-color:rgba(255,140,0,.30);
+
+    box-shadow:0 15px 35px rgba(255,140,0,.12);
+
+}
+
+.team-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+.team-header .team-logo{
+
+    width:64px;
+
+    height:64px;
+
+    margin:0;
+
+    font-size:22px;
+
+    border-radius:18px;
+
+}
+
+.team-header h3{
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+.team-header p{
+
+    margin-top:6px;
+
+    color:#BDBDBD;
+
+    font-size:14px;
+
+}
+
+/*=========================================
+          TEAM DETAILS
+==========================================*/
+
+.team-details{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:20px;
+
+    padding-top:18px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.team-details span{
+
+    font-size:14px;
+
+    color:#FF8C00;
+
+    font-weight:600;
+
+}
+
+/*=========================================
+            BUTTON
+==========================================*/
+
+.team-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:100%;
+
+    height:52px;
+
+    margin-top:22px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #FF2D2D,
+        #FF8C00
+    );
+
+    box-shadow:0 10px 25px rgba(255,80,0,.25);
+
+    transition:.3s;
+
+}
+
+.team-btn:active{
+
+    transform:scale(.96);
+
+}
+/*=========================================
+            FOOTER
+==========================================*/
+
+.footer{
+
+    padding:45px 20px 110px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    background:#050505;
+
+}
+
+.footer h2{
+
+    font-size:28px;
+
+    font-weight:900;
+
+}
+
+.footer span{
+
+    color:#FF8C00;
+
+}
+
+.footer p{
+
+    margin-top:12px;
+
+    color:#9A9A9A;
+
+    line-height:1.8;
+
+}
+
+/*=========================================
+        SEARCH FOCUS
+==========================================*/
+
+.team-search{
+
+    transition:.35s;
+
+}
+
+.team-search:focus{
+
+    border-color:#FF8C00;
+
+    box-shadow:0 0 25px rgba(255,140,0,.18);
+
+}
+
+/*=========================================
+        PREMIUM ANIMATIONS
+==========================================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.teams-hero,
+.featured-card,
+.team-card{
+
+    animation:fadeUp .8s ease both;
+
+}
+
+/*=========================================
+        PREMIUM GLOW
+==========================================*/
+
+.featured-card{
+
+    box-shadow:
+
+        0 15px 40px rgba(255,140,0,.15);
+
+}
+
+.team-card:hover .team-logo{
+
+    transform:rotate(6deg) scale(1.05);
+
+}
+
+.team-logo{
+
+    transition:.35s;
+
+}
+
+/*=========================================
+        PREMIUM SCROLLBAR
+==========================================*/
+
+::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#FF8C00;
+
+    border-radius:999px;
+
+}
+
+/*=========================================
+        MOBILE RESPONSIVE
+==========================================*/
+
+@media(max-width:430px){
+
+    .teams-hero{
+
+        padding:105px 18px 60px;
+
+    }
+
+    .teams-hero h1{
+
+        font-size:34px;
+
+    }
+
+    .featured-card{
+
+        padding:28px 20px;
+
+    }
+
+    .featured-card h2{
+
+        font-size:24px;
+
+    }
+
+    .featured-stats{
+
+        gap:10px;
+
+    }
+
+    .featured-stats h3{
+
+        font-size:18px;
+
+    }
+
+    .team-header{
+
+        align-items:flex-start;
+
+    }
+
+    .team-header h3{
+
+        font-size:18px;
+
+    }
+
+    .team-details{
+
+        flex-direction:column;
+
+        gap:8px;
+
+    }
+
+}
+
+/*=========================================
+        EXTRA SMALL DEVICES
+==========================================*/
+
+@media(max-width:360px){
+
+    .teams-hero h1{
+
+        font-size:30px;
+
+    }
+
+    .section-title h2{
+
+        font-size:24px;
+
+    }
+
+    .team-header .team-logo{
+
+        width:56px;
+
+        height:56px;
+
+        font-size:18px;
+
+    }
+
+    .team-btn{
+
+        height:48px;
+
+    }
+
+}
