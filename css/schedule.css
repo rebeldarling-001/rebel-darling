@@ -1,0 +1,844 @@
+/*=========================================
+        FREEFIREXIPL V2
+        SCHEDULE PAGE
+==========================================*/
+
+:root{
+
+    --primary:#FF2D2D;
+    --secondary:#FF8C00;
+    --dark:#000;
+    --card:#0D0D0D;
+    --text:#fff;
+    --muted:#B8B8B8;
+
+}
+
+body{
+
+    background:#000;
+
+    color:#fff;
+
+}
+
+/*=========================================
+            HERO
+==========================================*/
+
+.schedule-hero{
+
+    position:relative;
+
+    padding:110px 20px 70px;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+.hero-glow{
+
+    position:absolute;
+
+    width:280px;
+
+    height:280px;
+
+    background:#ff6b00;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.18;
+
+    left:50%;
+
+    top:-90px;
+
+    transform:translateX(-50%);
+
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,140,0,.12);
+
+    border:1px solid rgba(255,140,0,.25);
+
+    color:#FF8C00;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.schedule-hero h1{
+
+    margin-top:20px;
+
+    font-size:38px;
+
+    font-weight:900;
+
+}
+
+.schedule-hero p{
+
+    margin-top:16px;
+
+    color:#BDBDBD;
+
+    line-height:1.8;
+
+}
+
+/*=========================================
+        SECTION TITLE
+==========================================*/
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:28px;
+
+}
+
+.section-title span{
+
+    color:#FF8C00;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.section-title h2{
+
+    margin-top:12px;
+
+    font-size:30px;
+
+}
+
+/*=========================================
+          LIVE MATCH
+==========================================*/
+
+.live-match{
+
+    padding:20px;
+
+}
+
+.live-card{
+
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.03)
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    padding:28px;
+
+    text-align:center;
+
+    backdrop-filter:blur(18px);
+
+}
+
+.live-badge{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:#ff2d2d;
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.live-card h2{
+
+    margin-top:18px;
+
+    font-size:28px;
+
+}
+
+.live-card p{
+
+    color:#BDBDBD;
+
+}
+
+.match-info{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:24px;
+
+}
+
+.match-info div{
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:18px;
+
+    padding:16px;
+
+}
+
+.match-info strong{
+
+    display:block;
+
+    color:#FF8C00;
+
+    margin-bottom:8px;
+
+}
+/*=========================================
+        UPCOMING MATCHES
+==========================================*/
+
+.upcoming-section{
+
+    padding:20px;
+
+}
+
+.schedule-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.schedule-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:22px;
+
+    transition:.35s;
+
+    backdrop-filter:blur(16px);
+
+}
+
+.schedule-card:active{
+
+    transform:scale(.98);
+
+    border-color:rgba(255,140,0,.35);
+
+}
+
+.match-no{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    background:rgba(255,140,0,.15);
+
+    color:#FF8C00;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    margin-bottom:14px;
+
+}
+
+.schedule-card h3{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.schedule-card h3 span{
+
+    color:#FF8C00;
+
+    margin:0 10px;
+
+}
+
+.schedule-card p{
+
+    margin-top:10px;
+
+    color:#BDBDBD;
+
+}
+
+/*=========================================
+          TIMELINE
+==========================================*/
+
+.timeline-section{
+
+    padding:20px;
+
+}
+
+.timeline{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.timeline-item{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+}
+
+.timeline-date{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        135deg,
+        #FF2D2D,
+        #FF8C00
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:800;
+
+}
+
+.timeline-content{
+
+    flex:1;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
+
+    padding:18px;
+
+}
+
+.timeline-content h3{
+
+    font-size:18px;
+
+}
+
+.timeline-content p{
+
+    margin-top:8px;
+
+    color:#BDBDBD;
+
+}
+
+/*=========================================
+      COMPLETED MATCHES
+==========================================*/
+
+.completed-section{
+
+    padding:20px;
+
+}
+
+.completed-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:22px;
+
+    margin-bottom:18px;
+
+}
+
+.completed-card h3{
+
+    font-size:20px;
+
+}
+
+.completed-card p{
+
+    margin-top:8px;
+
+    color:#BDBDBD;
+
+}
+
+.score{
+
+    color:#19d46b;
+
+    font-size:18px;
+
+    font-weight:800;
+
+}
+
+/*=========================================
+        NOTIFICATION CARD
+==========================================*/
+
+.notify-section{
+
+    padding:20px;
+
+}
+
+.notify-card{
+
+    background:linear-gradient(
+        145deg,
+        rgba(255,45,45,.18),
+        rgba(255,140,0,.12)
+    );
+
+    border:1px solid rgba(255,140,0,.25);
+
+    border-radius:28px;
+
+    padding:30px 24px;
+
+    text-align:center;
+
+}
+
+.notify-card h2{
+
+    font-size:28px;
+
+}
+
+.notify-card p{
+
+    margin:18px 0 24px;
+
+    color:#E4E4E4;
+
+}
+
+.notify-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:54px;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    color:#111;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+/*=========================================
+        DOWNLOAD CARD
+==========================================*/
+
+.download-section{
+
+    padding:20px 20px 70px;
+
+}
+
+.download-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    padding:30px 24px;
+
+    text-align:center;
+
+}
+
+.download-card h2{
+
+    font-size:28px;
+
+}
+
+.download-card p{
+
+    margin:18px 0 24px;
+
+    color:#BDBDBD;
+
+}
+
+.download-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:54px;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        135deg,
+        #FF2D2D,
+        #FF8C00
+    );
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+/*=========================================
+        PREMIUM FOOTER
+==========================================*/
+
+.footer{
+
+    padding:45px 20px 110px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    background:#050505;
+
+}
+
+.footer h2{
+
+    font-size:28px;
+
+    font-weight:900;
+
+    color:#fff;
+
+}
+
+.footer span{
+
+    color:#FF8C00;
+
+}
+
+.footer p{
+
+    margin-top:12px;
+
+    color:#9B9B9B;
+
+    line-height:1.8;
+
+}
+
+/*=========================================
+        CARD HOVER EFFECT
+==========================================*/
+
+.live-card,
+.schedule-card,
+.timeline-content,
+.completed-card,
+.notify-card,
+.download-card{
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+
+}
+
+.live-card:hover,
+.schedule-card:hover,
+.timeline-content:hover,
+.completed-card:hover,
+.notify-card:hover,
+.download-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:rgba(255,140,0,.28);
+
+    box-shadow:0 15px 40px rgba(255,140,0,.12);
+
+}
+
+/*=========================================
+        FADE UP ANIMATION
+==========================================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.schedule-hero,
+.live-card,
+.schedule-card,
+.timeline-item,
+.completed-card,
+.notify-card,
+.download-card{
+
+    animation:fadeUp .8s ease both;
+
+}
+
+/*=========================================
+        PREMIUM SCROLLBAR
+==========================================*/
+
+::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#FF8C00;
+
+    border-radius:999px;
+
+}
+
+/*=========================================
+        MOBILE OPTIMIZATION
+==========================================*/
+
+@media(max-width:430px){
+
+    .schedule-hero{
+
+        padding:105px 18px 60px;
+
+    }
+
+    .schedule-hero h1{
+
+        font-size:34px;
+
+    }
+
+    .section-title h2{
+
+        font-size:26px;
+
+    }
+
+    .live-card h2{
+
+        font-size:24px;
+
+    }
+
+    .match-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .completed-card{
+
+        flex-direction:column;
+
+        gap:16px;
+
+        text-align:center;
+
+    }
+
+    .timeline-item{
+
+        align-items:flex-start;
+
+    }
+
+    .timeline-date{
+
+        width:54px;
+
+        height:54px;
+
+        font-size:13px;
+
+    }
+
+    .notify-card h2,
+
+    .download-card h2{
+
+        font-size:24px;
+
+    }
+
+}
+
+/*=========================================
+        EXTRA SMALL DEVICES
+==========================================*/
+
+@media(max-width:360px){
+
+    .schedule-hero h1{
+
+        font-size:30px;
+
+    }
+
+    .section-title h2{
+
+        font-size:22px;
+
+    }
+
+    .schedule-card h3{
+
+        font-size:19px;
+
+    }
+
+    .live-card{
+
+        padding:22px;
+
+    }
+
+}
+.notify-btn,
+.download-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.live-badge{
+
+    transition:.4s;
+
+}
+
+.live-badge.pulse{
+
+    box-shadow:
+        0 0 0 8px rgba(255,45,45,.12),
+        0 0 25px rgba(255,45,45,.45);
+
+}
+
+@keyframes ripple{
+
+    to{
+
+        transform:scale(4);
+
+        opacity:0;
+
+    }
+
+}

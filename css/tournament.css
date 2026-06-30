@@ -1,0 +1,784 @@
+/*==========================================
+        FREEFIREXIPL V2
+        TOURNAMENT PAGE
+===========================================*/
+
+:root{
+
+    --primary:#FF2D2D;
+    --secondary:#FF8C00;
+    --dark:#000;
+    --surface:#0A0A0A;
+    --text:#FFFFFF;
+    --muted:#B5B5B5;
+
+}
+
+/*========================================*/
+
+body{
+
+    background:#000000;
+    color:#fff;
+
+}
+
+/*========================================
+        HERO
+=========================================*/
+
+.tournament-hero{
+
+    position:relative;
+
+    padding:110px 20px 70px;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+.hero-glow{
+
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    background:#ff5c00;
+
+    filter:blur(130px);
+
+    opacity:.18;
+
+    top:-90px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+}
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,140,0,.12);
+
+    border:1px solid rgba(255,140,0,.25);
+
+    color:#FF8C00;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.tournament-hero h1{
+
+    margin-top:22px;
+
+    font-size:40px;
+
+    font-weight:900;
+
+    line-height:1.1;
+
+}
+
+.tournament-hero p{
+
+    margin-top:18px;
+
+    color:#B5B5B5;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+}
+
+/*========================================
+      FEATURED CARD
+=========================================*/
+
+.featured-tournament{
+
+    padding:0 18px 35px;
+
+}
+
+.featured-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.45);
+
+}
+
+.featured-card img{
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:cover;
+
+}
+
+.status{
+
+    position:absolute;
+
+    margin:16px;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:#19d46b;
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+.featured-card h2{
+
+    padding:22px 20px 8px;
+
+    font-size:24px;
+
+}
+
+.featured-card p{
+
+    padding:0 20px;
+
+    color:#B5B5B5;
+
+}
+
+/*========================================
+        QUICK INFO
+=========================================*/
+
+.quick-info{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:12px;
+
+    padding:22px 20px;
+
+}
+
+.quick-info div{
+
+    background:rgba(255,255,255,.04);
+
+    border-radius:18px;
+
+    text-align:center;
+
+    padding:16px;
+
+}
+
+.quick-info h4{
+
+    color:#FF8C00;
+
+    font-size:20px;
+
+    font-weight:800;
+
+}
+
+.quick-info span{
+
+    color:#A9A9A9;
+
+    font-size:12px;
+
+}
+
+/*========================================*/
+
+.join-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:calc(100% - 40px);
+
+    margin:0 auto 22px;
+
+    height:56px;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#FF2D2D,#FF8C00);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    box-shadow:0 10px 28px rgba(255,80,0,.28);
+
+}
+/*========================================
+        SECTION TITLE
+=========================================*/
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:28px;
+
+}
+
+.section-title span{
+
+    display:inline-block;
+
+    padding:7px 16px;
+
+    border-radius:999px;
+
+    background:rgba(255,140,0,.12);
+
+    border:1px solid rgba(255,140,0,.25);
+
+    color:#FF8C00;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+.section-title h2{
+
+    margin-top:16px;
+
+    font-size:32px;
+
+    font-weight:800;
+
+}
+
+/*========================================
+        COUNTDOWN
+=========================================*/
+
+.countdown-section{
+
+    padding:60px 18px;
+
+}
+
+.countdown-card{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+}
+
+.count-box{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:25px 15px;
+
+    text-align:center;
+
+    backdrop-filter:blur(16px);
+
+}
+
+.count-box h3{
+
+    font-size:38px;
+
+    color:#FF8C00;
+
+    font-weight:900;
+
+}
+
+.count-box p{
+
+    margin-top:8px;
+
+    color:#A9A9A9;
+
+    font-size:13px;
+
+}
+
+/*========================================
+        PRIZE SECTION
+=========================================*/
+
+.prize-section{
+
+    padding:20px 18px 60px;
+
+}
+
+.prize-grid{
+
+    display:grid;
+
+    gap:18px;
+
+}
+
+.prize-card{
+
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.03)
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:28px;
+
+    text-align:center;
+
+    backdrop-filter:blur(18px);
+
+}
+
+.prize-card h3{
+
+    color:#BDBDBD;
+
+    font-size:16px;
+
+}
+
+.prize-card h1{
+
+    margin-top:12px;
+
+    font-size:34px;
+
+    color:#FF8C00;
+
+    font-weight:900;
+
+}
+
+/*========================================
+      TOURNAMENT INFO
+=========================================*/
+
+.info-section{
+
+    padding:20px 18px 60px;
+
+}
+
+.info-card{
+
+    display:grid;
+
+    gap:14px;
+
+}
+
+.info-card div{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:20px;
+
+}
+
+.info-card strong{
+
+    display:block;
+
+    color:#FF8C00;
+
+    font-size:15px;
+
+    margin-bottom:8px;
+
+}
+
+.info-card p{
+
+    color:#C5C5C5;
+
+    line-height:1.6;
+
+}
+
+/*========================================
+            RULES
+=========================================*/
+
+.rules-section{
+
+    padding:20px 18px 60px;
+
+}
+
+.rules-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.rule-item{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:flex-start;
+
+    padding:20px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.rule-item span{
+
+    min-width:52px;
+
+    height:52px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #FF2D2D,
+        #FF8C00
+    );
+
+    color:#fff;
+
+    font-weight:800;
+
+}
+
+.rule-item p{
+
+    color:#C5C5C5;
+
+    line-height:1.7;
+
+}
+/*========================================
+              CTA SECTION
+=========================================*/
+
+.cta-section{
+
+    padding:20px 18px 80px;
+
+}
+
+.cta-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:linear-gradient(
+        135deg,
+        #FF2D2D,
+        #FF8C00
+    );
+
+    border-radius:28px;
+
+    padding:38px 24px;
+
+    text-align:center;
+
+    box-shadow:0 20px 50px rgba(255,80,0,.28);
+
+}
+
+.cta-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    top:-70px;
+
+    right:-70px;
+
+}
+
+.cta-card h2{
+
+    position:relative;
+
+    font-size:30px;
+
+    font-weight:900;
+
+    color:#fff;
+
+}
+
+.cta-card p{
+
+    position:relative;
+
+    margin:18px 0 28px;
+
+    color:rgba(255,255,255,.9);
+
+    line-height:1.8;
+
+}
+
+.cta-card .join-btn{
+
+    position:relative;
+
+    width:100%;
+
+    margin:0;
+
+    background:#fff;
+
+    color:#111;
+
+    box-shadow:none;
+
+}
+
+/*========================================
+              FOOTER
+=========================================*/
+
+.footer{
+
+    padding:45px 20px 110px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.footer h2{
+
+    font-size:28px;
+
+    font-weight:900;
+
+    color:#fff;
+
+}
+
+.footer span{
+
+    color:#FF8C00;
+
+}
+
+.footer p{
+
+    margin-top:12px;
+
+    color:#9A9A9A;
+
+    line-height:1.8;
+
+}
+
+/*========================================
+           PREMIUM SCROLLBAR
+=========================================*/
+
+::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#FF8C00;
+
+    border-radius:999px;
+
+}
+
+/*========================================
+            ANIMATIONS
+=========================================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.tournament-hero,
+.featured-card,
+.countdown-card,
+.prize-card,
+.info-card,
+.rule-item,
+.cta-card{
+
+    animation:fadeUp .8s ease both;
+
+}
+
+/*========================================
+            MOBILE OPTIMIZATION
+=========================================*/
+
+@media(max-width:430px){
+
+    .tournament-hero h1{
+
+        font-size:34px;
+
+    }
+
+    .section-title h2{
+
+        font-size:26px;
+
+    }
+
+    .featured-card h2{
+
+        font-size:22px;
+
+    }
+
+    .count-box h3{
+
+        font-size:32px;
+
+    }
+
+    .prize-card h1{
+
+        font-size:28px;
+
+    }
+
+    .cta-card{
+
+        padding:32px 20px;
+
+    }
+
+}
+.join-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+@keyframes ripple{
+
+    to{
+
+        transform:scale(4);
+
+        opacity:0;
+
+    }
+
+}

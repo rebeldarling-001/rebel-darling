@@ -1,0 +1,36 @@
+/* ===================================
+   SPLASH SCREEN ANIMATIONS
+=================================== */
+
+@keyframes pulseGlow {
+
+    0%{
+        transform:scale(1);
+        text-shadow:0 0 10px #ff2d2d;
+    }
+
+    50%{
+        transform:scale(1.05);
+        text-shadow:
+        0 0 20px #ff2d2d,
+        0 0 40px #ff8c00;
+    }
+
+    100%{
+        transform:scale(1);
+        text-shadow:0 0 10px #ff2d2d;
+    }
+
+}
+
+@keyframes loadingBar{
+
+    from{
+        width:0%;
+    }
+
+    to{
+        width:100%;
+    }
+
+}

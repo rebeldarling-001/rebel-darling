@@ -1,0 +1,53 @@
+/*====================================
+      PAGE TRANSITION
+====================================*/
+
+.page-transition{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#000;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99998;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.45s ease;
+
+}
+
+.page-transition.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.transition-logo{
+
+    color:#fff;
+
+    font-size:38px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+}
+
+.transition-logo span{
+
+    color:#FF8C00;
+
+}
