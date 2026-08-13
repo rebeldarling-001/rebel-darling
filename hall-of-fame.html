@@ -17,8 +17,21 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>About — FREEFIRE XIPL Season 11</title>
+    <title>Hall of Fame — FREEFIRE XIPL Season 11</title>
+    <meta name="description" content="The Hall of Fame — champions, legends and record holders across FREEFIRE XIPL history.">
+    <meta property="og:title" content="Hall of Fame — FREEFIRE XIPL Season 11">
+    <meta property="og:description" content="The Hall of Fame — champions, legends and record holders across FREEFIRE XIPL history.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://rebeldarling-001.github.io/f-ipl/og-image.jpg">
+    <meta property="og:url" content="https://rebeldarling-001.github.io/f-ipl/hall-of-fame.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rebeldarling-001.github.io/f-ipl/og-image.jpg">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="canonical" href="https://rebeldarling-001.github.io/f-ipl/hall-of-fame.html">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
@@ -1927,39 +1940,16 @@
             color: var(--ink-faint);
         }
 
-        /* ============ MISSION / STORY ============ */
-        .story-card {
-            margin: 26px 20px 0;
-            border-radius: 20px;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            padding: 20px 18px;
-        }
-
-        .story-card p {
-            font-size: 13px;
-            color: var(--ink-dim);
-            line-height: 1.65;
-        }
-
-        .story-card p + p {
-            margin-top: 12px;
-        }
-
-        .story-card b {
-            color: var(--gold-pale);
-        }
-
-        /* ============ QUICK FACTS ============ */
-        .fact-grid {
+        /* ============ STAT STRIP ============ */
+        .hof-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             padding: 0 20px;
-            margin-top: 16px;
+            margin-top: 26px;
         }
 
-        .fact {
+        .hof-stat {
             border-radius: 16px;
             background: var(--surface);
             border: 1px solid var(--line);
@@ -1967,167 +1957,344 @@
             text-align: center;
         }
 
-        .fact .num {
+        .hof-stat .num {
             font-family: 'Space Mono', monospace;
-            font-size: 19px;
+            font-size: 20px;
             color: var(--gold);
             font-weight: 700;
         }
 
-        .fact .lbl {
+        .hof-stat .lbl {
             margin-top: 4px;
-            font-size: 9px;
-            letter-spacing: 0.06em;
+            font-size: 9.5px;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--ink-faint);
-            line-height: 1.3;
         }
 
-        /* ============ ORGANIZER CARDS ============ */
-        .org-grid {
+        /* ============ TIMELINE ============ */
+        .timeline-wrap {
+            position: relative;
+            padding: 30px 20px 6px;
+        }
+
+        .timeline-rail {
+            position: absolute;
+            left: 46px;
+            top: 30px;
+            bottom: 30px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gold-deep), var(--line) 90%);
+        }
+
+        .timeline-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 10px 20px 6px;
+            gap: 18px;
         }
 
-        .org-card {
+        .tl-item {
+            position: relative;
             display: flex;
-            align-items: center;
-            gap: 12px;
-            border-radius: 16px;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            padding: 13px 14px;
+            gap: 16px;
         }
 
-        .org-avatar {
+        .tl-node {
             flex: 0 0 auto;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: var(--surface-2);
-            border: 1px solid var(--gold-deep);
+            position: relative;
+            width: 52px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 19px;
+            padding-top: 6px;
         }
 
-        .org-name {
-            font-size: 13.5px;
-            font-weight: 700;
-            color: var(--ink);
+        .tl-dot {
+            position: relative;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--gold-deep);
+            z-index: 1;
         }
 
-        .org-role {
-            margin-top: 2px;
-            font-size: 11px;
-            color: var(--gold-deep);
-            letter-spacing: 0.03em;
+        .tl-item.champion-season .tl-dot {
+            width: 18px;
+            height: 18px;
+            background: var(--gold);
+            border-color: var(--gold-pale);
+            box-shadow: 0 0 0 4px rgba(var(--gold-rgb), 0.18), 0 0 16px rgba(var(--gold-rgb), 0.7);
+            animation: champDotPulse 2.2s ease-in-out infinite;
         }
 
-        /* ============ FAQ ACCORDION ============ */
-        .faq-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding: 10px 20px 6px;
+        @keyframes champDotPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 4px rgba(var(--gold-rgb), 0.18), 0 0 16px rgba(var(--gold-rgb), 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 0 7px rgba(var(--gold-rgb), 0.1), 0 0 22px rgba(var(--gold-rgb), 0.9);
+            }
         }
 
-        .faq-item {
-            border-radius: 16px;
+        .tl-card {
+            flex: 1;
+            border-radius: 20px;
             background: var(--surface);
             border: 1px solid var(--line);
+            padding: 16px 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ---- Champion spotlight treatment ---- */
+        .tl-item.champion-season .tl-card {
+            padding: 2px;
+            border: none;
+            background: conic-gradient(from 0deg, var(--gold-deep), var(--gold-pale) 25%, var(--gold) 50%, var(--gold-deep) 75%, var(--gold-pale) 100%);
+            animation: champFrameSpin 6s linear infinite;
+            box-shadow: 0 0 30px rgba(var(--gold-rgb), 0.35);
+        }
+
+       
+
+        .tl-item.champion-season .tl-card-inner {
+            position: relative;
+            border-radius: 18px;
+            padding: 18px 16px;
+            background: linear-gradient(150deg, var(--cta-a), var(--cta-b) 65%);
             overflow: hidden;
         }
 
-        .faq-q {
-            width: 100%;
+        .tl-item.champion-season .tl-card-inner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at top right, rgba(var(--gold-rgb), 0.22), transparent 60%);
+            pointer-events: none;
+        }
+
+        .champ-ribbon {
+            position: absolute;
+            top: 12px;
+            right: -2px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px 5px 14px;
+            border-radius: 100px 0 0 100px;
+            background: linear-gradient(135deg, var(--gold-pale), var(--gold) 60%, var(--gold-deep));
+            color: var(--on-accent);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 14px rgba(var(--gold-rgb), 0.4);
+            z-index: 2;
+        }
+
+        .tl-season-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
-            padding: 14px 15px;
-            background: transparent;
-            border: none;
-            text-align: left;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--ink);
-            cursor: pointer;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
         }
 
-        .faq-q .chev {
-            flex: 0 0 auto;
-            color: var(--gold);
-            font-size: 13px;
-            transition: transform 0.25s ease;
+        .tl-season {
+            font-family: 'Space Mono', monospace;
+            font-size: 10.5px;
+            letter-spacing: 0.1em;
+            color: var(--gold-deep);
+            text-transform: uppercase;
         }
 
-        .faq-item.open .faq-q .chev {
-            transform: rotate(180deg);
-        }
-
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-a-inner {
-            padding: 0 15px 15px;
-            font-size: 12.5px;
-            color: var(--ink-dim);
-            line-height: 1.6;
-        }
-
-        /* ============ CONTACT / SOCIALS ============ */
-        .contact-card {
-            margin: 26px 20px 0;
-            border-radius: 20px;
-            background: linear-gradient(150deg, var(--cta-a), var(--cta-b) 60%);
-            border: 1px solid var(--gold-deep);
-            padding: 22px 18px;
-            text-align: center;
-        }
-
-        .contact-card h3 {
-            font-family: 'Anton', sans-serif;
-            font-size: 20px;
+        .tl-item.champion-season .tl-season {
             color: var(--gold-pale);
         }
 
-        .contact-card p {
-            margin-top: 6px;
-            font-size: 12.5px;
-            color: var(--ink-dim);
-            line-height: 1.55;
+        .tl-current-tag {
+            font-size: 9px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 100px;
+            background: rgba(var(--live-rgb), 0.14);
+            color: var(--live);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .contact-socials {
+        .tl-current-tag .live-blip {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--live);
+            animation: liveBlink 1.4s ease-in-out infinite;
+        }
+
+        @keyframes liveBlink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.25;
+            }
+        }
+
+        .tl-champ-row {
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 16px;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
         }
 
-        .contact-soc {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid var(--gold-deep);
-            background: var(--surface);
+        .tl-crest {
+            flex: 0 0 auto;
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            background: var(--surface-2);
+            border: 1px solid var(--line);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--gold);
-            font-size: 16px;
-            text-decoration: none;
+            font-size: 19px;
         }
 
-        .contact-card .btn {
-            margin-top: 18px;
+        .tl-item.champion-season .tl-crest {
+            width: 52px;
+            height: 52px;
+            font-size: 25px;
+            border: 1px solid var(--gold-deep);
+            background: radial-gradient(circle at 35% 30%, var(--gold-pale), var(--gold) 55%, var(--gold-deep));
+            box-shadow: 0 0 20px rgba(var(--gold-rgb), 0.5);
+        }
+
+        .tl-champ-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.2;
+        }
+
+        .tl-item.champion-season .tl-champ-name {
+            font-family: 'Anton', sans-serif;
+            font-size: 19px;
+            letter-spacing: 0.01em;
+            color: var(--gold-pale);
+        }
+
+        /* ---- Live / in-progress season (not a champion — no trophy treatment) ---- */
+        .tl-item.live-season .tl-dot {
+            background: var(--live);
+            border-color: var(--live);
+            box-shadow: 0 0 0 4px rgba(var(--live-rgb), 0.16), 0 0 14px rgba(var(--live-rgb), 0.6);
+            animation: liveDotPulse 1.4s ease-in-out infinite;
+        }
+
+        @keyframes liveDotPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 4px rgba(var(--live-rgb), 0.16), 0 0 14px rgba(var(--live-rgb), 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 0 7px rgba(var(--live-rgb), 0.08), 0 0 18px rgba(var(--live-rgb), 0.8);
+            }
+        }
+
+        .tl-item.live-season .tl-card {
+            border-style: dashed;
+            border-color: rgba(var(--live-rgb), 0.4);
+            background: var(--bg-alt);
+        }
+
+        .tl-live-icon {
+            flex: 0 0 auto;
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            border: 1px dashed rgba(var(--live-rgb), 0.5);
+            background: rgba(var(--live-rgb), 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .tl-item.live-season .tl-champ-name {
+            font-size: 14px;
+            color: var(--ink-dim);
+            font-weight: 700;
+        }
+
+        .tl-champ-sub {
+            margin-top: 2px;
+            font-size: 11px;
+            color: var(--ink-faint);
+        }
+
+        .tl-item.champion-season .tl-champ-sub {
+            color: var(--ink-dim);
+        }
+
+        .champ-ribbon {
+            max-width: 62%;
+            white-space: nowrap;
+        }
+
+        .tl-stat-row {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tl-mini-stat {
+            font-size: 10.5px;
+            color: var(--ink-dim);
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
+            border-radius: 100px;
+            padding: 4px 10px;
+        }
+
+        .tl-item.champion-season .tl-mini-stat {
+            background: rgba(var(--gold-rgb), 0.14);
+            border-color: var(--gold-deep);
+            color: var(--gold-pale);
+        }
+
+        .tl-mini-stat b {
+            color: var(--gold);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .tl-item.champion-season .tl-mini-stat b {
+            color: var(--gold-pale);
+        }
+
+        .tl-blurb {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--ink-dim);
+            line-height: 1.55;
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
@@ -2266,152 +2433,321 @@
             <a href="schedule.html" class="nav-link"><span class="nav-link-icon">📅</span> Schedule</a>
             <a href="points.html" class="nav-link"><span class="nav-link-icon">📊</span> Points</a>
             <a href="leaderboard.html" class="nav-link"><span class="nav-link-icon">🏆</span> Leaderboard</a>
-            <a href="hall-of-fame.html" class="nav-link"><span class="nav-link-icon">👑</span> Hall of Fame</a>
+            <a href="hall-of-fame.html" class="nav-link" aria-current="page"><span class="nav-link-icon">👑</span> Hall of Fame</a>
             <a href="announcements.html" class="nav-link"><span class="nav-link-icon">📣</span> Announcements</a>
             <a href="rules.html" class="nav-link"><span class="nav-link-icon">📖</span> Rules</a>
-            <a href="about.html" class="nav-link" aria-current="page"><span class="nav-link-icon">ℹ️</span> About</a>
+            <a href="about.html" class="nav-link"><span class="nav-link-icon">ℹ️</span> About</a>
         </div>
         <div class="nav-drawer-foot">FREEFIREXIPL · Season 11</div>
     </nav>
 
     <!-- PAGE HEAD -->
     <section class="page-head">
-        <div class="eyebrow fade-up">ℹ️ WHO WE ARE</div>
-        <h1 class="sec-title display fade-up d1">About <b>XIPL</b></h1>
-        <p class="sec-desc fade-up d2">The story behind the tournament, the people running it, and how to reach
-            us.</p>
-        <div class="updated-chip fade-up d3">🔥 SEASON 11 · FAN-RUN SINCE SEASON 1</div>
+        <div class="eyebrow fade-up">👑 LEGACY</div>
+        <h1 class="sec-title display fade-up d1">Hall of <b>Fame</b></h1>
+        <p class="sec-desc fade-up d2">Eleven seasons, eleven champions. Every franchise that lifted the trophy and
+            wrote its name into XIPL history.</p>
+        <div class="updated-chip fade-up d3">🕒 THROUGH SEASON 11</div>
     </section>
 
-    <!-- MISSION / STORY -->
-    <section class="story-card fade-up">
-        <p><b>FREEFIRE XIPL</b> is a fan-made Free Fire franchise tournament — built by players, for players. What
-            started as a scrappy weekend bracket among a few squads has grown into a full franchise league, complete
-            with a player auction, a season-long points race and a Grand Finale that decides who gets etched into
-            the Hall of Fame.</p>
-        <p>We're not affiliated with Garena — this is a passion project run by a small volunteer team who wanted a
-            structured, fair, competitive space for the community to play the game they love at a higher level.</p>
-        <p>Every season, twelve franchises battle it out across group stage, playoffs and a Grand Finale, all
-            governed by the same rulebook and scored the same way. No shortcuts, no favorites — just the arena
-            deciding who's best.</p>
-    </section>
-
-    <!-- QUICK FACTS -->
-    <section class="fact-grid fade-up d1">
-        <div class="fact">
+    <!-- STAT STRIP -->
+    <section class="hof-stats fade-up d3">
+        <div class="hof-stat">
             <div class="num">11</div>
-            <div class="lbl">Seasons Run</div>
+            <div class="lbl">Seasons</div>
         </div>
-        <div class="fact">
-            <div class="num">12</div>
-            <div class="lbl">Franchises / Season</div>
+        <div class="hof-stat">
+            <div class="num">8</div>
+            <div class="lbl">Franchises Crowned</div>
         </div>
-        <div class="fact">
-            <div class="num">100%</div>
-            <div class="lbl">Fan-Run</div>
+        <div class="hof-stat">
+            <div class="num">2</div>
+            <div class="lbl">Back-to-Back Titles</div>
         </div>
     </section>
 
-    <!-- ORGANIZERS -->
-    <section style="padding: 30px 20px 0;">
-        <div class="eyebrow fade-up">👥 THE TEAM</div>
-        <h2 class="sec-title fade-up d1">Run by the <b>Community</b></h2>
-        <p class="sec-desc fade-up d2">A small crew handling everything from the auction to the casting desk.</p>
-    </section>
-    <div class="org-grid">
-        <div class="org-card fade-up">
-            <div class="org-avatar">🎙️</div>
-            <div>
-                <div class="org-name">Tournament Director</div>
-                <div class="org-role">Format, rulings & disputes</div>
-            </div>
-        </div>
-        <div class="org-card fade-up d1">
-            <div class="org-avatar">🔨</div>
-            <div>
-                <div class="org-name">Auction & Roster Ops</div>
-                <div class="org-role">Franchise auctions & registration</div>
-            </div>
-        </div>
-        <div class="org-card fade-up d2">
-            <div class="org-avatar">📊</div>
-            <div>
-                <div class="org-name">Stats & Standings</div>
-                <div class="org-role">Points, leaderboard & Hall of Fame</div>
-            </div>
-        </div>
-        <div class="org-card fade-up d3">
-            <div class="org-avatar">📣</div>
-            <div>
-                <div class="org-name">Community & Casting</div>
-                <div class="org-role">Announcements, socials & broadcast</div>
-            </div>
-        </div>
-    </div>
+    <!-- TIMELINE -->
+    <section class="timeline-wrap">
+        <div class="timeline-rail"></div>
+        <div class="timeline-list">
 
-    <!-- FAQ -->
-    <section style="padding: 30px 20px 0;">
-        <div class="eyebrow fade-up">❓ FAQ</div>
-        <h2 class="sec-title fade-up d1">Common <b>Questions</b></h2>
-    </section>
-    <div class="faq-list" id="faqList">
-        <div class="faq-item fade-up">
-            <button class="faq-q">How do I get my team into XIPL?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">Registration opens once a season on the Registration Hub. Sign up your
-                    player profile there — once registration closes, eligible players go into the franchise
-                    auction.</div>
+            <div class="tl-item live-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-season-row">
+                        <span class="tl-season">Season 11</span>
+                        <span class="tl-current-tag"><span class="live-blip"></span> Live Now</span>
+                    </div>
+                    <div class="tl-champ-row">
+                        <div class="tl-live-icon">⏳</div>
+                        <div>
+                            <div class="tl-champ-name">Trophy Not Yet Decided</div>
+                            <div class="tl-champ-sub">Group stage underway</div>
+                        </div>
+                    </div>
+                    <p class="tl-blurb">This season's story is still being written on the battleground — check the
+                        Leaderboard for live standings. This spot lights up gold the moment a champion is crowned.</p>
+                </div>
             </div>
-        </div>
-        <div class="faq-item fade-up">
-            <button class="faq-q">How does the franchise auction work?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">Each of the twelve franchises bids a virtual budget to build a 4-starter,
-                    2-substitute roster from the pool of registered players. Full details are on the Auction Center
-                    page.</div>
-            </div>
-        </div>
-        <div class="faq-item fade-up">
-            <button class="faq-q">Is XIPL affiliated with Garena or Free Fire?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">No. XIPL is an independent, fan-made tournament. We're not affiliated with,
-                    endorsed by, or sponsored by Garena.</div>
-            </div>
-        </div>
-        <div class="faq-item fade-up">
-            <button class="faq-q">Where do I report a rule violation or a dispute?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">Team captains can raise disputes within 30 minutes of a match ending,
-                    through the official Discord. See the Rulebook's Disputes section for the full process.</div>
-            </div>
-        </div>
-        <div class="faq-item fade-up">
-            <button class="faq-q">How can I follow live matches and results?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">Live standings are always on the Leaderboard and Points pages, and match
-                    days are listed on the Schedule. Follow our socials below for stream links on match day.</div>
-            </div>
-        </div>
-    </div>
 
-    <!-- CONTACT -->
-    <div class="contact-card fade-up">
-        <h3 class="display">GET IN TOUCH</h3>
-        <p>Questions, feedback, or want to get involved? Reach out through our socials — Discord is fastest for
-            match-day stuff.</p>
-        <div class="contact-socials">
-            <a class="contact-soc" href="#" aria-label="Discord">💬</a>
-            <a class="contact-soc" href="#" aria-label="X / Twitter">✕</a>
-            <a class="contact-soc" href="#" aria-label="Instagram">◎</a>
-            <a class="contact-soc" href="#" aria-label="YouTube">▶</a>
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 10</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">🐉</div>
+                            <div>
+                                <div class="tl-champ-name">Dragon Kings</div>
+                                <div class="tl-champ-sub">Back-to-back champions</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>91</b> pts</span>
+                            <span class="tl-mini-stat"><b>4</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">Defended their crown with a dominant playoff run, sealing the title in
+                            the Grand Finale's final zone against Phantom Reapers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 9</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">🐉</div>
+                            <div>
+                                <div class="tl-champ-name">Dragon Kings</div>
+                                <div class="tl-champ-sub">First title</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>84</b> pts</span>
+                            <span class="tl-mini-stat"><b>3</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">Rode a red-hot Grand Finale to their maiden championship, breaking
+                            through after two consecutive semi-final exits.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 8</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">🦂</div>
+                            <div>
+                                <div class="tl-champ-name">Venom Vipers</div>
+                                <div class="tl-champ-sub">Franchise's second title</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>79</b> pts</span>
+                            <span class="tl-mini-stat"><b>3</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">A late playoff surge carried the Vipers past the top seed, closing the
+                            season on a six-match unbeaten streak.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 7</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">👑</div>
+                            <div>
+                                <div class="tl-champ-name">Royal Reapers</div>
+                                <div class="tl-champ-sub">Debut title</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>76</b> pts</span>
+                            <span class="tl-mini-stat"><b>2</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">Entered the playoffs as the #4 seed and knocked out three straight
+                            top-half franchises to claim an underdog crown.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 6</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">🦂</div>
+                            <div>
+                                <div class="tl-champ-name">Venom Vipers</div>
+                                <div class="tl-champ-sub">First title</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>81</b> pts</span>
+                            <span class="tl-mini-stat"><b>4</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">Topped the group stage wire-to-wire and carried that form straight
+                            through to a commanding Grand Finale win.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 5</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">⚔️</div>
+                            <div>
+                                <div class="tl-champ-name">Iron Titans</div>
+                                <div class="tl-champ-sub">Franchise's second title</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>73</b> pts</span>
+                            <span class="tl-mini-stat"><b>3</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">Won a tightly contested finale decided by elimination count after both
+                            finalists finished level on points.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 4</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">🌊</div>
+                            <div>
+                                <div class="tl-champ-name">Storm Riders</div>
+                                <div class="tl-champ-sub">Debut title</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>70</b> pts</span>
+                            <span class="tl-mini-stat"><b>2</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">A consistency-driven campaign — no single dominant match, but the fewest
+                            bottom-half finishes of any franchise that season.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 3</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">⚔️</div>
+                            <div>
+                                <div class="tl-champ-name">Iron Titans</div>
+                                <div class="tl-champ-sub">First title</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>68</b> pts</span>
+                            <span class="tl-mini-stat"><b>3</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">The franchise's inaugural championship, sealed with a dominant
+                            18-elimination performance in the deciding match.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 2</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">🛡️</div>
+                            <div>
+                                <div class="tl-champ-name">Phantom Reapers</div>
+                                <div class="tl-champ-sub">First title</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>65</b> pts</span>
+                            <span class="tl-mini-stat"><b>2</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">Went back-to-back in the Grand Finale's opening two matches and never
+                            relinquished the lead.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item champion-season fade-up">
+                <div class="tl-node"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-card-inner">
+                        <span class="champ-ribbon">🏆 Founding Champion</span>
+                        <div class="tl-season-row">
+                            <span class="tl-season">Season 1</span>
+                        </div>
+                        <div class="tl-champ-row">
+                            <div class="tl-crest">🏆</div>
+                            <div>
+                                <div class="tl-champ-name">Blaze Battalion</div>
+                                <div class="tl-champ-sub">Inaugural champions</div>
+                            </div>
+                        </div>
+                        <div class="tl-stat-row">
+                            <span class="tl-mini-stat"><b>61</b> pts</span>
+                            <span class="tl-mini-stat"><b>2</b> Booyahs</span>
+                        </div>
+                        <p class="tl-blurb">The franchise that started it all — the very first name etched onto the
+                            XIPL trophy.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <a class="btn btn-primary" href="rules.html" style="display:block; text-decoration:none;">Read the
-            Rulebook</a>
+    </section>
+
+    <div class="cta-band fade-up" style="margin:32px 20px 0;">
+        <h3 class="display">WRITE THE NEXT CHAPTER</h3>
+        <p>Season 11 is still being decided — follow the live standings as the story unfolds.</p>
+        <a class="btn btn-primary" href="leaderboard.html" style="display:block; text-decoration:none;">View
+            Leaderboard</a>
     </div>
 
     <!-- FOOTER -->
@@ -2605,29 +2941,6 @@ if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-    </script>
-    <script>
-        // ---------- FAQ accordion ----------
-        document.querySelectorAll('.faq-item').forEach(item => {
-            const q = item.querySelector('.faq-q');
-            const a = item.querySelector('.faq-a');
-            q.addEventListener('click', () => {
-                const isOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item.open').forEach(open => {
-                    if (open !== item) {
-                        open.classList.remove('open');
-                        open.querySelector('.faq-a').style.maxHeight = null;
-                    }
-                });
-                if (isOpen) {
-                    item.classList.remove('open');
-                    a.style.maxHeight = null;
-                } else {
-                    item.classList.add('open');
-                    a.style.maxHeight = a.scrollHeight + 'px';
-                }
-            });
-        });
     </script>
 </body>
 

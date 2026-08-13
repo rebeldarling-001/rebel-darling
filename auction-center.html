@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('xipl-theme');
+                if (saved) document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) { }
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Auction Hub — FREEFIRE XIPL Season 12</title>
+    <meta name="description" content="Live player auction for FREEFIRE XIPL Season 12 — 8 franchises, 4 rounds, 40 players.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+/* =========================================================================
+   FREEFIRE XIPL — SHARED THEME SYSTEM (copied verbatim from home.html/rules.html)
+   ========================================================================= */
+        :root, [data-theme="golden-fire"] {
+            --bg:#0a0705; --bg-alt:#120c07; --surface:#1a130b; --surface-2:#221909;
+            --gold:#f0b93d; --gold-deep:#b3811f; --gold-pale:#fbe4a6;
+            --ink:#f4ecd8; --ink-dim:#a9997d; --ink-faint:#6b5f4c; --live:#ff4433;
+            --line: rgba(var(--gold-rgb), 0.14); --shadow-gold: 0 0 40px rgba(var(--gold-rgb), 0.18);
+            --bg-rgb:10,7,5; --gold-rgb:240,185,61; --live-rgb:255,68,51; --mvp-glow-rgb:178,110,224; --on-accent:#1a1206;
+            --card-a:#1d1509; --card-b:#100b06; --nav-a:#160f08; --nav-b:#0c0805;
+            --cta-a:#221708; --cta-b:#16100a; --splash-a:#1c1206; --splash-b:#0a0705; --btt-bg: rgba(15, 10, 5, 0.85);
+            --amb1: rgba(240, 185, 61, .20); --amb2: rgba(251, 228, 166, .14); --amb3: rgba(179, 129, 31, .10);
+            --body-1:#0a0705; --body-2:#120c07; --body-3:#1a130b; --body-4:#060402;
+        }
+        [data-theme="og-bar"] {
+            --bg:#0a0705; --bg-alt:#120c07; --surface:#1a130b; --surface-2:#221909;
+            --gold:#f0b93d; --gold-deep:#b3811f; --gold-pale:#fbe4a6;
+            --ink:#f4ecd8; --ink-dim:#a9997d; --ink-faint:#6b5f4c; --live:#ff4433;
+            --line: rgba(var(--gold-rgb), 0.14); --shadow-gold: 0 0 40px rgba(var(--gold-rgb), 0.18);
+            --bg-rgb:10,7,5; --gold-rgb:240,185,61; --live-rgb:255,68,51; --mvp-glow-rgb:178,110,224; --on-accent:#1a1206;
+            --card-a:#1d1509; --card-b:#100b06; --nav-a:#160f08; --nav-b:#0c0805;
+            --cta-a:#221708; --cta-b:#16100a; --splash-a:#1c1206; --splash-b:#0a0705; --btt-bg: rgba(15, 10, 5, 0.85);
+            --amb1: rgba(0, 180, 255, .18); --amb2: rgba(130, 80, 255, .16); --amb3: rgba(0, 255, 180, .08);
+            --body-1:#040814; --body-2:#08101F; --body-3:#0B1628; --body-4:#05070D;
+        }
+        [data-theme="crystal-light"] {
+            --bg:#eef6fb9a; --bg-alt:#ffffff76; --surface:#ffffff7b; --surface-2:#e4f2fa67;
+            --gold:#2ea8e0; --gold-deep:#1c7fb0; --gold-pale:#8fd6ff;
+            --ink:#10344a; --ink-dim:#4d7286; --ink-faint:#86a4b3; --live:#ff5252;
+            --line: rgba(28, 127, 176, 0.16); --shadow-gold: 0 8px 30px rgba(46, 168, 224, 0.16);
+            --bg-rgb:238,246,251; --gold-rgb:46,168,224; --live-rgb:255,82,82; --mvp-glow-rgb:130,190,255; --on-accent:#ffffff8d;
+            --card-a:#ffffff72; --card-b:#dcf0fb; --nav-a:#ffffff; --nav-b:#dcf0fb;
+            --cta-a:#ffffff; --cta-b:#d7edfa; --splash-a:#ffffff; --splash-b:#d7edfa; --btt-bg: rgba(255, 255, 255, 0.85);
+            --amb1: rgba(46, 168, 224, .16); --amb2: rgba(120, 190, 255, .14); --amb3: rgba(150, 230, 255, .12);
+            --body-1:#eaf6ff; --body-2:#f2fbff; --body-3:#e6f4fd; --body-4:#eef6fb;
+        }
+        [data-theme="neon-cyber"] {
+            --bg:#05060f; --bg-alt:#0a0d1c; --surface:#0d1226; --surface-2:#131a35;
+            --gold:#29d3ff; --gold-deep:#7c3aed; --gold-pale:#9fe8ff;
+            --ink:#eaf2ff; --ink-dim:#93a7d6; --ink-faint:#5a6796; --live:#ff3b7a;
+            --line: rgba(41, 211, 255, 0.18); --shadow-gold: 0 0 40px rgba(41, 211, 255, 0.25);
+            --bg-rgb:5,6,15; --gold-rgb:41,211,255; --live-rgb:255,59,122; --mvp-glow-rgb:124,58,237; --on-accent:#05060f;
+            --card-a:#131a35; --card-b:#0a0d1c; --nav-a:#131a35; --nav-b:#05060f;
+            --cta-a:#17204a; --cta-b:#0a0d1c; --splash-a:#131a35; --splash-b:#05060f; --btt-bg: rgba(10, 13, 28, 0.85);
+            --amb1: rgba(41, 211, 255, .22); --amb2: rgba(124, 58, 237, .22); --amb3: rgba(0, 255, 220, .1);
+            --body-1:#05060f; --body-2:#0a0d21; --body-3:#0c1230; --body-4:#04050d;
+        }
+        [data-theme="royal-purple"] {
+            --bg:#140a24; --bg-alt:#1b0f30; --surface:#1f1236; --surface-2:#2a1948;
+            --gold:#b366ff; --gold-deep:#7c2fd6; --gold-pale:#ffb3ec;
+            --ink:#f3e8ff; --ink-dim:#b79bd9; --ink-faint:#7c5fa3; --live:#ff4d8d;
+            --line: rgba(179, 102, 255, 0.18); --shadow-gold: 0 0 40px rgba(179, 102, 255, 0.25);
+            --bg-rgb:20,10,36; --gold-rgb:179,102,255; --live-rgb:255,77,141; --mvp-glow-rgb:255,143,224; --on-accent:#1a0630;
+            --card-a:#2a1948; --card-b:#180b2b; --nav-a:#2a1948; --nav-b:#140a24;
+            --cta-a:#33205a; --cta-b:#180b2b; --splash-a:#2a1948; --splash-b:#140a24; --btt-bg: rgba(24, 11, 43, 0.85);
+            --amb1: rgba(179, 102, 255, .24); --amb2: rgba(255, 143, 224, .18); --amb3: rgba(120, 80, 255, .14);
+            --body-1:#140a24; --body-2:#1c0f36; --body-3:#200f3f; --body-4:#100819;
+        }
+        [data-theme="emerald-forest"] {
+            --bg:#06170f; --bg-alt:#0a2016; --surface:#0d2419; --surface-2:#123222;
+            --gold:#22c58e; --gold-deep:#0e8f63; --gold-pale:#a7f3d0;
+            --ink:#eafff5; --ink-dim:#9fcbb2; --ink-faint:#5f8f77; --live:#ff5a4d;
+            --line: rgba(34, 197, 142, 0.18); --shadow-gold: 0 0 40px rgba(34, 197, 142, 0.22);
+            --bg-rgb:6,23,15; --gold-rgb:34,197,142; --live-rgb:255,90,77; --mvp-glow-rgb:167,243,208; --on-accent:#042014;
+            --card-a:#123222; --card-b:#08190f; --nav-a:#123222; --nav-b:#06170f;
+            --cta-a:#163b28; --cta-b:#08190f; --splash-a:#123222; --splash-b:#06170f; --btt-bg: rgba(8, 25, 15, 0.85);
+            --amb1: rgba(34, 197, 142, .2); --amb2: rgba(167, 243, 208, .14); --amb3: rgba(80, 220, 150, .12);
+            --body-1:#06170f; --body-2:#0a2318; --body-3:#0c2a1c; --body-4:#04120b;
+        }
+        [data-theme="sunset-orange"] {
+            --bg:#1f0f08; --bg-alt:#29140a; --surface:#2b160c; --surface-2:#391d0f;
+            --gold:#ff7a45; --gold-deep:#d9481f; --gold-pale:#ffcba4;
+            --ink:#fff1e6; --ink-dim:#d9ab8f; --ink-faint:#9c6f57; --live:#ff3b3b;
+            --line: rgba(255, 122, 69, 0.18); --shadow-gold: 0 0 40px rgba(255, 122, 69, 0.22);
+            --bg-rgb:31,15,8; --gold-rgb:255,122,69; --live-rgb:255,59,59; --mvp-glow-rgb:255,187,130; --on-accent:#2a0e04;
+            --card-a:#391d0f; --card-b:#200f07; --nav-a:#391d0f; --nav-b:#1f0f08;
+            --cta-a:#45260f; --cta-b:#200f07; --splash-a:#391d0f; --splash-b:#1f0f08; --btt-bg: rgba(32, 15, 7, 0.85);
+            --amb1: rgba(255, 122, 69, .22); --amb2: rgba(255, 187, 130, .16); --amb3: rgba(255, 90, 90, .1);
+            --body-1:#1f0f08; --body-2:#2a1509; --body-3:#2f170b; --body-4:#170a05;
+        }
+        [data-theme="ocean-blue"] {
+            --bg:#02121f; --bg-alt:#052235; --surface:#06263b; --surface-2:#0a3550;
+            --gold:#00b4d8; --gold-deep:#0077b6; --gold-pale:#90e0ef;
+            --ink:#eafcff; --ink-dim:#9fd0e0; --ink-faint:#5f8fa3; --live:#ff5c5c;
+            --line: rgba(0, 180, 216, 0.18); --shadow-gold: 0 0 40px rgba(0, 180, 216, 0.24);
+            --bg-rgb:2,18,31; --gold-rgb:0,180,216; --live-rgb:255,92,92; --mvp-glow-rgb:144,224,239; --on-accent:#011520;
+            --card-a:#0a3550; --card-b:#041c2b; --nav-a:#0a3550; --nav-b:#02121f;
+            --cta-a:#0d3f5e; --cta-b:#041c2b; --splash-a:#0a3550; --splash-b:#02121f; --btt-bg: rgba(4, 28, 43, 0.85);
+            --amb1: rgba(0, 180, 216, .22); --amb2: rgba(144, 224, 239, .16); --amb3: rgba(0, 119, 182, .16);
+            --body-1:#02121f; --body-2:#062338; --body-3:#082b43; --body-4:#010b13;
+        }
+        [data-theme="sakura-pink"] {
+            --bg:#fdf3f7; --bg-alt:#fff8fb; --surface:#ffffff; --surface-2:#ffe9f2;
+            --gold:#ff8fc2; --gold-deep:#e05a95; --gold-pale:#ffd6e8;
+            --ink:#4a2540; --ink-dim:#93677f; --ink-faint:#bb96a9; --live:#ff5577;
+            --line: rgba(224, 90, 149, 0.18); --shadow-gold: 0 8px 30px rgba(255, 143, 194, 0.2);
+            --bg-rgb:253,243,247; --gold-rgb:255,143,194; --live-rgb:255,85,119; --mvp-glow-rgb:220,180,255; --on-accent:#ffffff;
+            --card-a:#ffffff; --card-b:#ffe4f0; --nav-a:#ffffff; --nav-b:#ffe4f0;
+            --cta-a:#ffffff; --cta-b:#ffdcec; --splash-a:#ffffff; --splash-b:#ffdcec; --btt-bg: rgba(255, 255, 255, 0.85);
+            --amb1: rgba(255, 143, 194, .2); --amb2: rgba(220, 180, 255, .16); --amb3: rgba(255, 210, 230, .18);
+            --body-1:#fff5f9; --body-2:#fef0f6; --body-3:#fdeaf3; --body-4:#fdf3f7;
+        }
+        [data-theme="midnight-black"] {
+            --bg:#0a0a0a; --bg-alt:#111111; --surface:#141414; --surface-2:#1c1c1c;
+            --gold:#d4d4d4; --gold-deep:#8a8a8a; --gold-pale:#f5f5f5;
+            --ink:#f5f5f5; --ink-dim:#a3a3a3; --ink-faint:#666666; --live:#ff4d4d;
+            --line: rgba(255, 255, 255, 0.12); --shadow-gold: 0 0 40px rgba(255, 255, 255, 0.1);
+            --bg-rgb:10,10,10; --gold-rgb:212,212,212; --live-rgb:255,77,77; --mvp-glow-rgb:180,180,180; --on-accent:#0a0a0a;
+            --card-a:#1c1c1c; --card-b:#0d0d0d; --nav-a:#1c1c1c; --nav-b:#0a0a0a;
+            --cta-a:#202020; --cta-b:#0d0d0d; --splash-a:#1c1c1c; --splash-b:#0a0a0a; --btt-bg: rgba(13, 13, 13, 0.85);
+            --amb1: rgba(255, 255, 255, .08); --amb2: rgba(200, 200, 200, .06); --amb3: rgba(255, 255, 255, .04);
+            --body-1:#0a0a0a; --body-2:#101010; --body-3:#131313; --body-4:#070707;
+        }
+        [data-theme="crimson-blood"] {
+            --bg:#1a0505; --bg-alt:#240808; --surface:#2b0a0a; --surface-2:#3a0f0f;
+            --gold:#e0304a; --gold-deep:#a3182d; --gold-pale:#ff8fa3;
+            --ink:#ffeef0; --ink-dim:#d99aa3; --ink-faint:#8f5860; --live:#ffcc00;
+            --line: rgba(224, 48, 74, 0.18); --shadow-gold: 0 0 40px rgba(224, 48, 74, 0.22);
+            --bg-rgb:26,5,5; --gold-rgb:224,48,74; --live-rgb:255,204,0; --mvp-glow-rgb:255,143,163; --on-accent:#1a0505;
+            --card-a:#3a0f0f; --card-b:#200808; --nav-a:#3a0f0f; --nav-b:#1a0505;
+            --cta-a:#451212; --cta-b:#200808; --splash-a:#3a0f0f; --splash-b:#1a0505; --btt-bg: rgba(32, 8, 8, 0.85);
+            --amb1: rgba(224, 48, 74, .22); --amb2: rgba(255, 143, 163, .16); --amb3: rgba(163, 24, 45, .12);
+            --body-1:#1a0505; --body-2:#240909; --body-3:#2a0a0a; --body-4:#120404;
+        }
+        [data-theme="arena-pro"] {
+            --bg:#FEF5EF; --bg-alt:#F3EAF4; --surface:#FFFFFF; --surface-2:#EADDE1;
+            --gold:#9D5C63; --gold-deep:#584B53; --gold-pale:#8B4B54;
+            --ink:#584B53; --ink-dim:#8F9491; --ink-faint:#BCA3AC; --live:#9D5C63;
+            --line: rgba(88, 75, 83, .14); --shadow-gold: 0 10px 30px rgba(157, 92, 99, .18);
+            --bg-rgb:254,245,239; --gold-rgb:157,92,99; --live-rgb:157,92,99; --mvp-glow-rgb:157,92,99; --on-accent:#FEF5EF;
+            --card-a:#FFFFFF; --card-b:#EADDE1; --nav-a:#FEF5EF; --nav-b:#F3EAF4;
+            --cta-a:#FFFFFF; --cta-b:#EADDE1; --splash-a:#FEF5EF; --splash-b:#F3EAF4; --btt-bg: rgba(254, 245, 239, .90);
+            --amb1: rgba(157, 92, 99, .08); --amb2: rgba(243, 234, 244, .45); --amb3: rgba(88, 75, 83, .06);
+            --body-1:#FEF5EF; --body-2:#F3EAF4; --body-3:#FFFFFF; --body-4:#EADDE1;
+        }
+        [data-theme="arena-pro"] body { background: radial-gradient(circle at 18% 10%, rgba(157, 92, 99, .07), transparent 32%), radial-gradient(circle at 85% 4%, rgba(214, 227, 248, .45), transparent 32%), linear-gradient(180deg, #FEF5EF, #F3EAF4 40%, #FEF5EF); color:#584B53; }
+        [data-theme="arena-pro"] header { background: rgba(254, 245, 239, .88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(88, 75, 83, .12); }
+        [data-theme="arena-pro"] .btn-primary { background: linear-gradient(135deg, #8B4B54, #9D5C63, #584B53); color:#fff; border:none; box-shadow: 0 10px 30px rgba(157, 92, 99, .20); }
+
+        @keyframes rgbHue { from { filter: hue-rotate(0deg); } to { filter: hue-rotate(360deg); } }
+        [data-theme="rgb-dynamic"] .crest, [data-theme="rgb-dynamic"] .ignite-core, [data-theme="rgb-dynamic"] .foil-frame::before,
+        [data-theme="rgb-dynamic"] .btn-primary, [data-theme="rgb-dynamic"] .scroll-progress-fill, [data-theme="rgb-dynamic"] .splash-bar-fill,
+        [data-theme="rgb-dynamic"] .theme-btn { animation: rgbHue 5s linear infinite; }
+
+        html.theme-transitioning, html.theme-transitioning * {
+            transition: background-color .6s ease, background-image .6s ease, border-color .6s ease, color .6s ease, box-shadow .6s ease, fill .6s ease, stroke .6s ease !important;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        html { background: var(--bg); }
+        body {
+            margin:0; color:var(--ink); font-family:'Inter', sans-serif; overflow-x:hidden; position:relative;
+            background:
+                linear-gradient(rgba(var(--gold-rgb), .05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(var(--gold-rgb), .05) 1px, transparent 1px),
+                radial-gradient(circle at 15% 20%, var(--amb1), transparent 28%),
+                radial-gradient(circle at 85% 15%, var(--amb2), transparent 30%),
+                radial-gradient(circle at 50% 85%, var(--amb3), transparent 35%),
+                linear-gradient(180deg, var(--body-1) 0%, var(--body-2) 30%, var(--body-3) 60%, var(--body-4) 100%);
+            background-size: 40px 40px, 40px 40px, auto, auto, auto, auto;
+            background-attachment: fixed;
+        }
+        @media (prefers-reduced-motion: reduce) { * { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; } }
+        ::selection { background: var(--gold); color: var(--on-accent); }
+        .display { font-family:'Anton', sans-serif; letter-spacing:0.02em; text-transform:uppercase; }
+        .mono { font-family:'Space Mono', monospace; }
+
+        #splash { position:fixed; inset:0; z-index:999; background: radial-gradient(ellipse at 50% 40%, var(--splash-a) 0%, var(--splash-b) 70%); display:flex; flex-direction:column; align-items:center; justify-content:center; max-width:480px; margin:0 auto; transition: opacity 0.7s ease, visibility 0.7s ease; will-change: mask-image; }
+        .ignite-wrap { position:relative; width:150px; height:150px; display:flex; align-items:center; justify-content:center; }
+        .ignite-ring { position:absolute; inset:0; border-radius:50%; border:1.5px solid var(--gold-deep); opacity:0; animation: ringPulse 1.8s ease-out infinite; }
+        .ignite-ring.r2 { animation-delay:0.4s; } .ignite-ring.r3 { animation-delay:0.8s; }
+        @keyframes ringPulse { 0%{transform:scale(0.5);opacity:0;} 30%{opacity:0.9;} 100%{transform:scale(1.6);opacity:0;} }
+        .ignite-core { width:64px; height:64px; background: linear-gradient(145deg, var(--gold-pale), var(--gold) 55%, var(--gold-deep)); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 100%, 50% 76%, 21% 100%, 32% 57%, 2% 35%, 39% 35%); animation: coreSpin 2.4s ease-in-out infinite, coreGlow 1.6s ease-in-out infinite; filter: drop-shadow(0 0 18px rgba(var(--gold-rgb), 0.7)); }
+        @keyframes coreSpin { 0%,100%{transform:rotate(-6deg) scale(1);} 50%{transform:rotate(6deg) scale(1.08);} }
+        @keyframes coreGlow { 0%,100%{filter:drop-shadow(0 0 14px rgba(var(--gold-rgb), 0.5));} 50%{filter:drop-shadow(0 0 28px rgba(var(--gold-rgb), 0.9));} }
+        .splash-word { margin-top:28px; font-size:23px; letter-spacing:0.06em; background: linear-gradient(180deg, var(--gold-pale), var(--gold) 60%, var(--gold-deep)); -webkit-background-clip:text; background-clip:text; color:transparent; opacity:0; animation: wordIn 0.8s ease forwards 0.5s; }
+        .splash-sub { margin-top:6px; font-size:11px; letter-spacing:0.45em; color:var(--ink-faint); opacity:0; animation: wordIn 0.8s ease forwards 0.9s; }
+        @keyframes wordIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+        .splash-bar { margin-top:36px; width:130px; height:2px; background:rgba(var(--gold-rgb), 0.15); border-radius:2px; overflow:hidden; }
+        .splash-bar-fill { height:100%; width:0%; background: linear-gradient(90deg, var(--gold-deep), var(--gold)); animation: fillBar 1.9s ease forwards 0.3s; }
+        @keyframes fillBar { to{width:100%;} }
+
+        .embers { position:fixed; inset:0; max-width:480px; margin:0 auto; pointer-events:none; z-index:0; overflow:hidden; }
+        .ember { position:absolute; bottom:-10px; width:3px; height:3px; border-radius:50%; background:var(--gold); opacity:0; box-shadow:0 0 6px 1px rgba(var(--gold-rgb), 0.8); animation-name:floatUp; animation-timing-function:ease-in; animation-iteration-count:infinite; }
+        @keyframes floatUp { 0%{transform:translateY(0) translateX(0);opacity:0;} 10%{opacity:0.9;} 90%{opacity:0.3;} 100%{transform:translateY(-720px) translateX(var(--drift, 20px));opacity:0;} }
+
+        header { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background: rgba(var(--bg-rgb), 0.82); backdrop-filter: blur(10px); border-bottom:1px solid var(--line); }
+        .brand { display:flex; align-items:center; gap:9px; }
+        .crest { width:30px; height:30px; background: linear-gradient(145deg, var(--gold-pale), var(--gold) 60%, var(--gold-deep)); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 100%, 50% 76%, 21% 100%, 32% 57%, 2% 35%, 39% 35%); }
+        .brand-text { font-size:16px; letter-spacing:0.06em; } .brand-text b { color:var(--gold); }
+        .menu-btn { width:34px; height:34px; border-radius:9px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; background:var(--surface); color:var(--gold); font-size:16px; cursor:pointer; -webkit-tap-highlight-color:transparent; transition: transform 0.15s ease; }
+        .menu-btn:active { transform: scale(0.92); }
+        .header-actions { display:flex; align-items:center; gap:8px; } .theme-btn { font-size:15px; }
+
+        .theme-overlay { position:fixed; inset:0; z-index:90; max-width:480px; margin:0 auto; background: rgba(var(--bg-rgb), 0.5); backdrop-filter: blur(3px); opacity:0; pointer-events:none; transition: opacity 0.3s ease; }
+        .theme-overlay.show { opacity:1; pointer-events:auto; }
+        .theme-panel { position:fixed; z-index:95; top:62px; right:14px; left:14px; max-width:452px; margin:0 auto; background: linear-gradient(165deg, var(--nav-a), var(--nav-b) 80%); border:1px solid var(--line); border-radius:18px; box-shadow:0 20px 50px rgba(0,0,0,0.45); transform: translateY(-14px) scale(0.97); opacity:0; pointer-events:none; transition: transform 0.28s cubic-bezier(.2,.9,.25,1), opacity 0.24s ease; max-height:78vh; display:flex; flex-direction:column; overflow:hidden; }
+        .theme-panel.show { transform: translateY(0) scale(1); opacity:1; pointer-events:auto; }
+        .theme-panel-head { display:flex; align-items:center; justify-content:space-between; padding:14px 14px 12px; font-size:13px; font-weight:600; letter-spacing:0.03em; color:var(--ink); border-bottom:1px solid var(--line); flex-shrink:0; }
+        .theme-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:12px; overflow-y:auto; }
+        .theme-opt { display:flex; align-items:center; gap:8px; padding:10px; border-radius:12px; border:1px solid var(--line); background: rgba(var(--bg-rgb), 0.35); cursor:pointer; text-align:left; transition: border-color 0.18s ease, background 0.18s ease, transform 0.15s ease; }
+        .theme-opt:active { transform: scale(0.96); }
+        .theme-opt.active { border-color:var(--gold); background: rgba(var(--gold-rgb), 0.1); box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.35); }
+        .theme-swatch { display:flex; flex-shrink:0; width:26px; height:26px; border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); }
+        .theme-swatch i { flex:1; display:block; }
+        .theme-opt-name { font-size:11.5px; letter-spacing:0.02em; color:var(--ink-dim); line-height:1.3; }
+        .theme-opt.active .theme-opt-name { color:var(--gold-pale); font-weight:600; }
+        .theme-opt-name em { font-style:normal; }
+
+        .nav-overlay { position:fixed; inset:0; z-index:90; max-width:480px; margin:0 auto; background: rgba(var(--bg-rgb), 0.62); backdrop-filter: blur(3px); opacity:0; pointer-events:none; transition: opacity 0.32s ease; }
+        .nav-overlay.show { opacity:1; pointer-events:auto; }
+        .nav-drawer { position:fixed; top:0; right:0; bottom:0; z-index:95; width:76%; max-width:300px; background: linear-gradient(165deg, var(--nav-a), var(--nav-b) 75%); border-left:1px solid var(--line); display:flex; flex-direction:column; padding:18px 16px 20px; transform: translateX(100%); transition: transform 0.38s cubic-bezier(.2,.9,.25,1); box-shadow:-24px 0 60px rgba(0,0,0,0.5); overflow-y:auto; }
+        .nav-drawer.show { transform: translateX(0); }
+        .nav-drawer-head { display:flex; align-items:center; justify-content:space-between; padding-bottom:16px; border-bottom:1px solid var(--line); }
+        .nav-close { width:30px; height:30px; border-radius:9px; border:1px solid var(--line); background:var(--surface); color:var(--gold); font-size:13px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+        .nav-links { display:flex; flex-direction:column; gap:6px; margin-top:20px; }
+        .nav-link { display:flex; align-items:center; gap:12px; padding:13px 12px; border-radius:12px; color:var(--ink); font-size:14px; letter-spacing:0.03em; text-decoration:none; border:1px solid transparent; transition: background 0.18s ease, border-color 0.18s ease; }
+        .nav-link[aria-current="page"] { background: rgba(var(--gold-rgb), 0.1); border-color: rgba(var(--gold-rgb), 0.3); color:var(--gold-pale); }
+        .header-flex { display:flex; align-items:center; gap:10px; }
+        .nav-link:active { background: rgba(var(--gold-rgb), 0.08); border-color:var(--line); }
+        .nav-link-primary { background: rgba(var(--gold-rgb), 0.1); border-color:var(--gold-deep); color:var(--gold-pale); font-weight:600; }
+        .nav-link-primary .nav-link-icon { background: rgba(var(--gold-rgb), 0.18); color:var(--gold); }
+        .nav-link-icon { width:30px; height:30px; border-radius:9px; flex-shrink:0; background: rgba(var(--gold-rgb), 0.08); display:flex; align-items:center; justify-content:center; font-size:13px; }
+        .nav-drawer-foot { margin-top:auto; padding-top:16px; border-top:1px solid var(--line); font-size:9.5px; letter-spacing:0.18em; color:var(--ink-faint); text-align:center; text-transform:uppercase; }
+
+        .fade-up { opacity:0; transform: translateY(24px); transition:0.6s ease; }
+        .fade-up.in { opacity:1; transform: translateY(0); }
+        .fade-up.d1 { transition-delay:0.05s; } .fade-up.d2 { transition-delay:0.15s; } .fade-up.d3 { transition-delay:0.25s; } .fade-up.d4 { transition-delay:0.35s; }
+
+        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+
+        .btn { flex:1; text-align:center; padding:14px 0; border-radius:11px; font-size:13.5px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; border:none; transition: transform 0.15s ease; cursor:pointer; font-family:inherit; }
+        .btn:active { transform: scale(0.96); }
+        .btn-primary { background: linear-gradient(135deg, var(--gold-pale), var(--gold) 55%, var(--gold-deep)); color:var(--on-accent); box-shadow: 0 8px 24px rgba(var(--gold-rgb), 0.25); }
+        .btn-ghost { background:transparent; color:var(--gold-pale); border:1px solid var(--gold-deep); }
+        .btn:disabled { opacity:0.4; pointer-events:none; }
+
+        section { padding:44px 20px 6px; position:relative; z-index:1; }
+        .eyebrow { font-size:10.5px; letter-spacing:0.32em; color:var(--gold-deep); display:flex; align-items:center; gap:8px; }
+        .eyebrow::before { content:''; width:16px; height:1px; background:var(--gold-deep); }
+        .sec-title { font-size:28px; margin-top:8px; color:var(--ink); line-height:1.05; }
+        .sec-title b { color:var(--gold); }
+        .sec-desc { margin-top:8px; font-size:13.5px; color:var(--ink-dim); line-height:1.55; max-width:340px; }
+
+        .foil-frame { position:relative; border-radius:26px; padding:2px; overflow:hidden; isolation:isolate; }
+        .foil-frame::before { content:''; position:absolute; inset:-60%; z-index:0; background: conic-gradient(from 0deg, var(--foil, var(--gold-deep)), var(--gold-pale) 25%, var(--gold) 50%, var(--foil, var(--gold-deep)) 75%, var(--gold-pale) 100%); animation: frameSpin 7s linear infinite; }
+        @keyframes frameSpin { to{transform:rotate(360deg);} }
+
+        .scroll-progress { position:fixed; top:0; left:50%; transform:translateX(-50%); z-index:80; width:100%; max-width:480px; height:2px; background:transparent; }
+        .scroll-progress-fill { height:100%; width:0%; background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-pale)); box-shadow:0 0 8px rgba(var(--gold-rgb), 0.6); transition: width 0.05s linear; }
+
+        .back-to-top { position:fixed; right:18px; bottom:20px; z-index:70; width:48px; height:48px; border-radius:50%; border:none; background:transparent; display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0; transform: translateY(10px) scale(0.9); pointer-events:none; transition: opacity 0.3s ease, transform 0.3s ease; }
+        .back-to-top.show { opacity:1; transform: translateY(0) scale(1); pointer-events:auto; }
+        .back-to-top svg { position:absolute; inset:0; transform: rotate(-90deg); }
+        .btt-bg { fill: var(--btt-bg); stroke: rgba(var(--gold-rgb), 0.18); stroke-width:2; }
+        .btt-fill { fill:none; stroke: var(--gold); stroke-width:2; stroke-linecap:round; transition: stroke-dashoffset 0.1s linear; }
+        .back-to-top span { position:relative; color:var(--gold); font-size:16px; font-weight:700; }
+
+        .cta-band { margin:44px 20px 0; padding:26px 20px; border-radius:18px; text-align:center; background: linear-gradient(150deg, var(--cta-a), var(--cta-b) 60%); border:1px solid var(--gold-deep); position:relative; overflow:hidden; }
+        .cta-band h3 { font-family:'Anton', sans-serif; font-size:22px; color:var(--gold-pale); letter-spacing:0.02em; }
+        .cta-band p { margin-top:6px; font-size:12.5px; color:var(--ink-dim); }
+        .cta-band .btn { margin-top:16px; }
+
+        footer { margin-top:40px; padding:26px 20px 20px; border-top:1px solid var(--line); }
+        .foot-brand { display:flex; align-items:center; gap:9px; }
+        .foot-tag { margin-top:10px; font-size:12px; color:var(--ink-faint); line-height:1.6; max-width:300px; }
+        .foot-social { display:flex; gap:10px; margin-top:16px; }
+        .soc { width:34px; height:34px; border-radius:9px; border:1px solid var(--line); background:var(--surface); display:flex; align-items:center; justify-content:center; color:var(--gold-deep); font-size:13px; }
+        .foot-copy { margin-top:20px; font-size:10.5px; color:var(--ink-faint); letter-spacing:0.03em; }
+    </style>
+    <style>
+        /* ============ PAGE-SPECIFIC: AUCTION HUB ============ */
+        .live-pill { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:100px; border:1px solid var(--gold-deep); font-size:10.5px; letter-spacing:0.16em; color:var(--gold-pale); background: rgba(var(--gold-rgb), 0.06); text-transform:uppercase; }
+        .live-pill .dot { width:5px; height:5px; border-radius:50%; background:var(--live); box-shadow:0 0 6px var(--live); animation: blink 1.2s ease-in-out infinite; }
+        .presence-row { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+        .presence-chip { display:flex; align-items:center; gap:6px; padding:7px 11px; border-radius:100px; background:var(--surface); border:1px solid var(--line); font-size:11px; color:var(--ink-dim); }
+        .presence-chip b { color:var(--gold-pale); font-family:'Space Mono',monospace; }
+
+        /* role tabs */
+        .role-tabs { display:flex; gap:8px; margin-top:18px; }
+        .role-tab { flex:1; text-align:center; padding:11px 4px; border-radius:12px; border:1px solid var(--line); background:var(--surface); color:var(--ink-dim); font-size:11.5px; letter-spacing:0.04em; font-weight:600; cursor:pointer; }
+        .role-tab.active { border-color:var(--gold); background: rgba(var(--gold-rgb), 0.12); color:var(--gold-pale); }
+        .role-panel { display:none; }
+        .role-panel.active { display:block; }
+
+        /* passcode gate */
+        .gate-box { margin-top:16px; padding:20px 18px; border-radius:18px; background:var(--surface); border:1px solid var(--line); text-align:center; }
+        .gate-box input, .gate-box select { width:100%; margin-top:12px; padding:12px 14px; border-radius:11px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); font-size:14px; font-family:inherit; }
+        .gate-box label { font-size:10.5px; letter-spacing:0.1em; color:var(--ink-faint); text-transform:uppercase; }
+        .gate-error { margin-top:10px; font-size:11.5px; color:var(--live); display:none; }
+
+        /* auction stage */
+        .stage-wrap { margin-top:20px; position:relative; }
+        .stage-card { position:relative; z-index:1; border-radius:24px; padding:24px 20px 26px; overflow:hidden; background: radial-gradient(ellipse 140% 90% at 50% -10%, rgba(var(--gold-rgb), 0.16), transparent 62%), linear-gradient(165deg, var(--card-a), var(--card-b) 78%); text-align:center; min-height:260px; }
+        .round-badge-row { display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; }
+        .round-pill { padding:5px 11px; border-radius:100px; font-size:9.5px; letter-spacing:0.14em; text-transform:uppercase; background: rgba(var(--gold-rgb), 0.1); border:1px solid var(--gold-deep); color:var(--gold-pale); }
+        .tier-badge { padding:5px 11px; border-radius:100px; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; font-weight:700; }
+        .tier-badge.top10 { background: rgba(255,68,51,0.15); color:#ff6a5a; border:1px solid rgba(255,68,51,0.4); }
+        .tier-badge.top20 { background: rgba(240,185,61,0.15); color:var(--gold-pale); border:1px solid var(--gold-deep); }
+        .tier-badge.top30 { background: rgba(95,217,126,0.15); color:#5fd97e; border:1px solid rgba(95,217,126,0.4); }
+        .tier-badge.top40 { background: rgba(61,111,224,0.15); color:#7fa3ff; border:1px solid rgba(61,111,224,0.4); }
+
+        .player-photo { width:96px; height:96px; border-radius:50%; margin:18px auto 0; background: linear-gradient(160deg, var(--surface-2), var(--surface)); border:3px solid var(--gold-deep); display:flex; align-items:center; justify-content:center; font-family:'Anton',sans-serif; font-size:30px; color:var(--gold-pale); box-shadow: 0 0 0 6px rgba(var(--gold-rgb), 0.08); }
+        .player-name { margin-top:14px; font-family:'Anton',sans-serif; font-size:24px; letter-spacing:0.02em; color:var(--ink); }
+        .player-meta { margin-top:4px; font-size:11.5px; color:var(--ink-faint); letter-spacing:0.03em; }
+        .price-row { display:flex; gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap; }
+        .price-chip { padding:12px 16px; border-radius:14px; background: rgba(var(--gold-rgb), 0.07); border:1px solid rgba(var(--gold-rgb), 0.24); min-width:110px; }
+        .price-chip .lbl { display:block; font-size:8.5px; letter-spacing:0.16em; color:var(--ink-faint); text-transform:uppercase; }
+        .price-chip .val { display:block; margin-top:4px; font-family:'Anton',sans-serif; font-size:20px; color:var(--gold-pale); transition: transform 0.15s ease; }
+        .price-chip .val.tick { transform: scale(1.18); color:var(--live); }
+        .bid-team-flash { margin-top:10px; font-size:13px; font-weight:700; letter-spacing:0.04em; min-height:18px; }
+
+        .sold-overlay, .unsold-overlay { position:absolute; inset:0; z-index:5; display:flex; align-items:center; justify-content:center; flex-direction:column; background: rgba(var(--bg-rgb), 0.88); backdrop-filter: blur(3px); border-radius:24px; opacity:0; pointer-events:none; transition: opacity 0.3s ease; }
+        .sold-overlay.show, .unsold-overlay.show { opacity:1; pointer-events:auto; animation: soldPop 0.5s cubic-bezier(.2,.9,.25,1); }
+        @keyframes soldPop { from{transform:scale(0.85);opacity:0;} to{transform:scale(1);opacity:1;} }
+        .sold-word { font-family:'Anton',sans-serif; font-size:40px; letter-spacing:0.04em; background: linear-gradient(180deg, var(--gold-pale), var(--gold) 55%, var(--gold-deep)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+        .unsold-word { font-family:'Anton',sans-serif; font-size:36px; letter-spacing:0.04em; color:var(--live); }
+        .sold-sub { margin-top:8px; font-size:13px; color:var(--ink-dim); text-align:center; padding:0 20px; }
+        .sold-sub b { color:var(--gold-pale); }
+
+        .countdown-overlay { position:absolute; inset:0; z-index:6; display:flex; align-items:center; justify-content:center; flex-direction:column; background: rgba(var(--bg-rgb), 0.92); border-radius:24px; opacity:0; pointer-events:none; transition: opacity 0.3s ease; }
+        .countdown-overlay.show { opacity:1; pointer-events:auto; }
+        .countdown-big { font-family:'Anton',sans-serif; font-size:56px; color:var(--gold); text-shadow:0 0 30px rgba(var(--gold-rgb),0.5); }
+        .countdown-label { margin-top:6px; font-size:12px; letter-spacing:0.1em; color:var(--ink-dim); text-transform:uppercase; }
+
+        /* teams grid */
+        .teams-purse-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px; }
+        .tp-card { position:relative; border-radius:16px; padding:13px 12px; background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--team-color, var(--gold)); overflow:hidden; }
+        .tp-card.on-block { box-shadow: 0 0 0 2px var(--team-color, var(--gold)), 0 8px 20px rgba(var(--gold-rgb),0.2); }
+        .tp-head { display:flex; align-items:center; justify-content:space-between; }
+        .tp-abbr { font-family:'Anton',sans-serif; font-size:15px; color:var(--team-color, var(--gold)); }
+        .tp-cap { font-size:8.5px; color:var(--ink-faint); text-align:right; line-height:1.3; }
+        .tp-purse-track { margin-top:9px; height:5px; border-radius:4px; background: rgba(var(--gold-rgb),0.09); overflow:hidden; }
+        .tp-purse-fill { height:100%; border-radius:4px; background: linear-gradient(90deg, var(--gold-deep), var(--gold)); transition: width 0.5s ease; }
+        .tp-nums { margin-top:7px; display:flex; justify-content:space-between; font-size:9.5px; color:var(--ink-faint); }
+        .tp-nums b { color:var(--ink); font-family:'Space Mono',monospace; }
+        .tp-players { margin-top:6px; font-size:9px; color:var(--ink-faint); letter-spacing:0.03em; }
+        .tp-done { position:absolute; top:8px; right:8px; font-size:8px; padding:2px 6px; border-radius:100px; background: rgba(95,217,126,0.15); color:#5fd97e; letter-spacing:0.06em; text-transform:uppercase; }
+
+        /* bid buttons (captain) */
+        .bid-btn-row { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:16px; }
+        .bid-btn { padding:14px 4px; border-radius:12px; border:1px solid var(--gold-deep); background: rgba(var(--gold-rgb), 0.08); color:var(--gold-pale); font-family:'Space Mono',monospace; font-weight:700; font-size:14px; cursor:pointer; transition: transform 0.12s ease; }
+        .bid-btn:active { transform: scale(0.94); }
+        .cap-status { margin-top:16px; display:flex; gap:10px; }
+        .cap-status .stat-card { flex:1; }
+
+        /* admin controls */
+        .admin-grid { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+        .admin-row { display:flex; gap:8px; }
+        .admin-row .btn { flex:1; padding:12px 4px; font-size:11px; }
+        .admin-log { margin-top:14px; max-height:180px; overflow-y:auto; display:flex; flex-direction:column; gap:6px; }
+        .admin-log-row { font-size:11px; color:var(--ink-dim); padding:7px 10px; border-radius:9px; background:var(--surface); border:1px solid var(--line); }
+        .admin-log-row b { color:var(--gold-pale); }
+
+        /* round summary / final summary */
+        .summary-modal { position:fixed; inset:0; z-index:200; max-width:480px; margin:0 auto; background: rgba(var(--bg-rgb), 0.94); backdrop-filter: blur(6px); display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition: opacity 0.35s ease; }
+        .summary-modal.show { opacity:1; pointer-events:auto; }
+        .summary-card { width:100%; max-height:82vh; overflow-y:auto; border-radius:22px; background: linear-gradient(165deg, var(--card-a), var(--card-b) 80%); border:1px solid rgba(var(--gold-rgb),0.3); padding:22px 18px; }
+        .summary-title { font-family:'Anton',sans-serif; font-size:22px; text-align:center; background: linear-gradient(180deg, var(--gold-pale), var(--gold) 55%, var(--gold-deep)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+        .summary-sub { text-align:center; font-size:11.5px; color:var(--ink-faint); margin-top:4px; letter-spacing:0.06em; text-transform:uppercase; }
+        .summary-list { margin-top:16px; display:flex; flex-direction:column; gap:8px; }
+        .summary-row { display:flex; justify-content:space-between; align-items:center; padding:9px 12px; border-radius:11px; background:var(--surface); border:1px solid var(--line); font-size:12px; }
+        .summary-row .p { color:var(--ink); font-weight:600; }
+        .summary-row .t { color:var(--ink-faint); font-size:10.5px; }
+        .summary-row .amt { font-family:'Space Mono',monospace; color:var(--gold-pale); font-weight:700; }
+        .summary-close { margin-top:18px; }
+
+        .stat-card { background:var(--surface); border:1px solid var(--line); border-radius:13px; padding:14px 8px; text-align:center; }
+        .stat-num { font-family:'Anton',sans-serif; font-size:20px; color:var(--gold); }
+        .stat-label { margin-top:3px; font-size:8.5px; letter-spacing:0.1em; color:var(--ink-faint); text-transform:uppercase; }
+
+        .players-left-list { margin-top:14px; display:flex; flex-direction:column; gap:8px; max-height:220px; overflow-y:auto; }
+        .pl-row { display:flex; justify-content:space-between; align-items:center; padding:9px 11px; border-radius:10px; background:var(--surface); border:1px solid var(--line); font-size:11.5px; }
+        .pl-row .n { color:var(--ink); }
+        .pl-row .p { color:var(--gold-pale); font-family:'Space Mono',monospace; font-size:11px; }
+
+        .caveat-box { margin-top:22px; padding:14px 16px; border-radius:14px; background: rgba(var(--live-rgb),0.06); border:1px solid rgba(var(--live-rgb),0.25); font-size:11px; line-height:1.55; color:var(--ink-dim); }
+        .caveat-box b { color:var(--live); }
+    </style>
+    <style>
+        /* ============ TOAST (replaces all native alert()/confirm()) ============ */
+        .toast-stack { position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:500; max-width:440px; width:calc(100% - 28px); display:flex; flex-direction:column; gap:8px; pointer-events:none; }
+        .toast { pointer-events:auto; padding:12px 16px; border-radius:13px; font-size:12.5px; line-height:1.4; background: linear-gradient(165deg, var(--card-a), var(--card-b) 80%); border:1px solid var(--gold-deep); color:var(--ink); box-shadow:0 12px 30px rgba(0,0,0,0.4); opacity:0; transform:translateY(-10px); transition: opacity 0.25s ease, transform 0.25s ease; }
+        .toast.show { opacity:1; transform:translateY(0); }
+        .toast.error { border-color:var(--live); }
+        .toast.success { border-color:#5fd97e; }
+
+        /* ============ ROUND BAND PLAYER BROWSER (admin) ============ */
+        .round-band { margin-top:14px; border-radius:16px; border:1px solid var(--line); background:var(--surface); overflow:hidden; }
+        .round-band-head { display:flex; align-items:center; justify-content:space-between; padding:13px 15px; cursor:pointer; }
+        .round-band-head .t { font-family:'Anton',sans-serif; font-size:14px; }
+        .round-band-head .sub { font-size:9.5px; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase; margin-top:2px; }
+        .round-band-body { display:none; padding:0 10px 10px; }
+        .round-band-body.open { display:block; }
+        .band-player-row { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 8px; border-radius:10px; font-size:11.5px; }
+        .band-player-row + .band-player-row { border-top:1px solid var(--line); }
+        .band-player-row .n { color:var(--ink); }
+        .band-player-row .m { display:block; font-size:9.5px; color:var(--ink-faint); margin-top:1px; }
+        .band-player-row .status-tag { font-size:8.5px; padding:3px 7px; border-radius:100px; text-transform:uppercase; letter-spacing:0.04em; white-space:nowrap; }
+        .band-player-row .status-tag.avail { background: rgba(var(--gold-rgb),0.1); color:var(--gold-pale); }
+        .band-player-row .status-tag.sold { background: rgba(95,217,126,0.12); color:#5fd97e; }
+        .band-player-row .status-tag.block { background: rgba(var(--live-rgb),0.14); color:var(--live); }
+        .band-row-actions { display:flex; gap:6px; flex-shrink:0; }
+        .mini-btn { font-size:9.5px; padding:6px 9px; border-radius:9px; border:1px solid var(--gold-deep); background: rgba(var(--gold-rgb),0.08); color:var(--gold-pale); cursor:pointer; white-space:nowrap; }
+        .mini-btn.ghost-live { border-color: rgba(var(--live-rgb),0.4); color:var(--live); background: rgba(var(--live-rgb),0.06); }
+
+        .min-bid-label { margin-top:4px; font-size:11px; color:var(--ink-faint); }
+        .min-bid-label b { color:var(--gold-pale); }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-progress"><div class="scroll-progress-fill" id="scrollFill"></div></div>
+
+    <!-- SPLASH -->
+    <div id="splash">
+        <div class="ignite-wrap">
+            <div class="ignite-ring r1"></div><div class="ignite-ring r2"></div><div class="ignite-ring r3"></div>
+            <div class="ignite-core"></div>
+        </div>
+        <div class="splash-word display">FREEFIREXIPL</div>
+        <div class="splash-sub">AUCTION HUB</div>
+        <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    </div>
+
+    <div class="embers" id="embers"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-flex">
+            <a href="home.html" class="back-btn" aria-label="Back to home">←</a>
+            <div class="brand"><div class="crest"></div><div class="brand-text">FREEFIRE<b>XIPL</b></div></div>
+        </div>
+        <div class="header-actions">
+            <button class="menu-btn theme-btn" id="themeBtn" aria-label="Change theme" aria-haspopup="true" aria-expanded="false">🎨</button>
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        </div>
+    </header>
+
+    <!-- THEME SWITCHER -->
+    <div class="theme-overlay" id="themeOverlay"></div>
+    <div class="theme-panel" id="themePanel" role="menu" aria-label="Theme switcher">
+        <div class="theme-panel-head"><span>🎨 Choose a Theme</span><button class="nav-close" id="themeClose" aria-label="Close theme menu">✕</button></div>
+        <div class="theme-grid" id="themeGrid">
+            <button class="theme-opt" data-theme="golden-fire" role="menuitemradio"><span class="theme-swatch"><i style="background:#0a0705"></i><i style="background:#f0b93d"></i><i style="background:#b88f20"></i></span><span class="theme-opt-name">Golden Fire <em>🔥</em></span></button>
+            <button class="theme-opt" data-theme="og-bar" role="menuitemradio"><span class="theme-swatch"><i style="background:#22a6df"></i><i style="background:#250505"></i><i style="background:#49310d"></i></span><span class="theme-opt-name">Disco Blue <em>❤️</em></span></button>
+            <button class="theme-opt" data-theme="neon-cyber" role="menuitemradio"><span class="theme-swatch"><i style="background:#05060f"></i><i style="background:#29d3ff"></i><i style="background:#49199b"></i></span><span class="theme-opt-name">Neon Cyber <em>💙</em></span></button>
+            <button class="theme-opt" data-theme="royal-purple" role="menuitemradio"><span class="theme-swatch"><i style="background:#140a24"></i><i style="background:#b366ff"></i><i style="background:#911b73"></i></span><span class="theme-opt-name">Royal Purple <em>💜</em></span></button>
+            <button class="theme-opt" data-theme="emerald-forest" role="menuitemradio"><span class="theme-swatch"><i style="background:#06170f"></i><i style="background:#22c58e"></i><i style="background:#147749"></i></span><span class="theme-opt-name">Emerald Forest <em>💚</em></span></button>
+            <button class="theme-opt" data-theme="sunset-orange" role="menuitemradio"><span class="theme-swatch"><i style="background:#1f0f08"></i><i style="background:#ff7a45"></i><i style="background:#824619"></i></span><span class="theme-opt-name">Sunset Orange <em>🧡</em></span></button>
+            <button class="theme-opt" data-theme="ocean-blue" role="menuitemradio"><span class="theme-swatch"><i style="background:#02121f"></i><i style="background:#00b4d8"></i><i style="background:#147282"></i></span><span class="theme-opt-name">Ocean Blue <em>🌊</em></span></button>
+            <button class="theme-opt" data-theme="sakura-pink" role="menuitemradio"><span class="theme-swatch"><i style="background:#fdf3f7"></i><i style="background:#ff8fc2"></i><i style="background:#97184f"></i></span><span class="theme-opt-name">Sakura Pink <em>🌸</em></span></button>
+            <button class="theme-opt" data-theme="midnight-black" role="menuitemradio"><span class="theme-swatch"><i style="background:#0a0a0a"></i><i style="background:#d4d4d4"></i><i style="background:#a22222"></i></span><span class="theme-opt-name">Midnight Black <em>⚫</em></span></button>
+            <button class="theme-opt" data-theme="crystal-light" role="menuitemradio"><span class="theme-swatch"><i style="background:#eef6fb"></i><i style="background:#2ea8e0"></i><i style="background:#058ede"></i></span><span class="theme-opt-name">Crystal Light <em>☀️</em></span></button>
+            <button class="theme-opt" data-theme="crimson-blood" role="menuitemradio"><span class="theme-swatch"><i style="background:#1a0505"></i><i style="background:#e0304a"></i><i style="background:#ff8fa3"></i></span><span class="theme-opt-name">Crimson Blood <em>🩸</em></span></button>
+            <button class="theme-opt" data-theme="arena-pro" role="menuitemradio"><span class="theme-swatch"><i style="background:#0b0b10"></i><i style="background:#ff8c00"></i><i style="background:#ffd36a"></i></span><span class="theme-opt-name">Arena Pro <em>⚔️</em></span></button>
+        </div>
+    </div>
+
+    <!-- NAV DRAWER -->
+    <div class="nav-overlay" id="navOverlay"></div>
+    <nav class="nav-drawer" id="navDrawer">
+        <div class="nav-drawer-head">
+            <div class="brand"><div class="crest" style="width:26px;height:26px;"></div><div class="brand-text">FREEFIRE<b>XIPL</b></div></div>
+            <button class="nav-close" id="navClose" aria-label="Close menu">✕</button>
+        </div>
+        <div class="nav-links">
+            <a href="home.html" class="nav-link"><span class="nav-link-icon">🔥</span> Home</a>
+            <a href="registration-center.html" class="nav-link"><span class="nav-link-icon">👤</span> Registration Center</a>
+            <a href="play-ins.html" class="nav-link"><span class="nav-link-icon">🎮</span> Play-Ins</a>
+            <a href="auction-center.html" class="nav-link nav-link-primary" aria-current="page"><span class="nav-link-icon">🔨</span> Auction</a>
+            <a href="teams.html" class="nav-link"><span class="nav-link-icon">🛡️</span> Teams</a>
+            <a href="schedule.html" class="nav-link"><span class="nav-link-icon">📅</span> Schedule</a>
+            <a href="points.html" class="nav-link"><span class="nav-link-icon">📊</span> Points</a>
+            <a href="leaderboard.html" class="nav-link"><span class="nav-link-icon">🏆</span> Leaderboard</a>
+            <a href="hall-of-fame.html" class="nav-link"><span class="nav-link-icon">👑</span> Hall of Fame</a>
+            <a href="announcements.html" class="nav-link"><span class="nav-link-icon">📣</span> Announcements</a>
+            <a href="rules.html" class="nav-link"><span class="nav-link-icon">📖</span> Rules</a>
+            <a href="about.html" class="nav-link"><span class="nav-link-icon">ℹ️</span> About</a>
+        </div>
+        <div class="nav-drawer-foot">FREEFIREXIPL · Season 12</div>
+    </nav>
+
+    <div class="toast-stack" id="toastStack"></div>
+
+    <!-- INTRO -->
+    <section style="padding-top:34px;">
+        <div class="live-pill fade-up"><span class="dot"></span> AUCTION HUB · LIVE</div>
+        <h1 class="sec-title display fade-up d1" style="font-size:32px;">8 Teams. <b>₹100 Cr</b> Each.<br>40 Players.</h1>
+        <p class="sec-desc fade-up d2">Watch every bid live, or sign in as a captain to buy your squad. The admin can put any player up for auction at any time — every player still opens at their own Play-In minimum.</p>
+        <div class="presence-row fade-up d3">
+            <div class="presence-chip">👀 <b id="viewerCount">0</b> watching</div>
+            <div class="presence-chip">🎖️ <b id="captainCount">0</b>/8 captains present</div>
+            <div class="presence-chip">✅ <b id="soldOverallCount">0</b>/40 sold</div>
+        </div>
+    </section>
+
+    <!-- ROLE TABS -->
+    <section style="padding-top:20px;">
+        <div class="role-tabs fade-up">
+            <div class="role-tab active" data-role="public">🎥 Watch Live</div>
+            <div class="role-tab" data-role="account">🔐 Team / Admin Login</div>
+        </div>
+
+        <div class="role-panel" id="panel-login">
+            <div class="gate-box fade-up" id="loginBox">
+                <label>Email</label>
+                <input type="email" id="authEmail" placeholder="you@team.com" autocomplete="username">
+                <label style="display:block; margin-top:10px;">Password</label>
+                <input type="password" id="authPassword" placeholder="Password" autocomplete="current-password">
+                <button class="btn btn-primary" style="width:100%; margin-top:14px;" id="authLoginBtn">Sign In</button>
+                <div class="gate-error" id="authError"></div>
+                <div class="sold-sub" style="margin-top:12px; font-size:10.5px;">Accounts are created by the tournament admin in Supabase Auth. There is no self-signup and no shared passcode.</div>
+            </div>
+            <div class="gate-box fade-up" id="loggedInBox" style="display:none;">
+                <label id="loggedInLabel">Signed in</label>
+                <div class="sold-sub" id="roleAssignedText" style="margin-top:6px;"></div>
+                <button class="btn btn-ghost" style="width:100%; margin-top:14px;" id="signOutBtn">Sign Out</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STAGE -->
+    <section id="stageSection" style="padding-top:8px;">
+        <div class="eyebrow">ON THE BLOCK</div>
+        <h2 class="sec-title">Current <b>player</b></h2>
+        <div class="foil-frame stage-wrap fade-up" style="--foil:var(--gold);">
+            <div class="stage-card" id="stageCard">
+                <div class="round-badge-row"><span class="round-pill" id="stageRoundPill">TIER —</span></div>
+                <div class="player-photo" id="stagePhoto">?</div>
+                <div class="player-name" id="stageName">No player on the block yet</div>
+                <div class="player-meta" id="stageMeta">UID — · Level —</div>
+                <div class="price-row">
+                    <div class="price-chip"><span class="lbl">BASE PRICE</span><span class="val" id="stageOpen">—</span></div>
+                    <div class="price-chip"><span class="lbl">Current Bid</span><span class="val" id="stageBid">No bids yet</span></div>
+                </div>
+                <div class="bid-team-flash" id="stageBidTeam" style="color:var(--gold-pale);"></div>
+
+                <div class="countdown-overlay" id="countdownOverlay">
+                    <div class="countdown-big" id="countdownNum">10</div>
+                    <div class="countdown-label" id="countdownLabel">Round begins in</div>
+                </div>
+                <div class="sold-overlay" id="soldOverlay">
+                    <div class="sold-word">SOLD!</div>
+                    <div class="sold-sub" id="soldSub">— to <b>—</b> for <b>—</b><br>Payout: <b>—</b></div>
+                </div>
+                <div class="unsold-overlay" id="unsoldOverlay">
+                    <div class="unsold-word display">UNSOLD</div>
+                    <div class="sold-sub">No bids received — this player stays available.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPTAIN PANEL -->
+    <section class="role-panel" id="panel-captain" style="padding-top:8px;">
+        <div class="eyebrow">YOUR SQUAD</div>
+        <h2 class="sec-title" id="capTeamTitle">Team <b>—</b></h2>
+        <div class="cap-status fade-up">
+            <div class="stat-card"><div class="stat-num" id="capPurseLeft">₹100Cr</div><div class="stat-label">Purse Left</div></div>
+            <div class="stat-card"><div class="stat-num" id="capPlayersLeft">5</div><div class="stat-label">Slots Left</div></div>
+        </div>
+        <div class="bid-btn-row fade-up">
+            <button class="bid-btn" data-inc="2">+2Cr</button>
+            <button class="bid-btn" data-inc="4">+4Cr</button>
+            <button class="bid-btn" data-inc="10">+10Cr</button>
+            <button class="bid-btn" data-inc="20">+20Cr</button>
+        </div>
+        <div class="min-bid-label" id="capBidHint">Tap any amount to open bidding at this player's minimum.</div>
+        <div class="eyebrow" style="margin-top:22px;">MY ROSTER</div>
+        <div class="players-left-list" id="capRosterList"></div>
+    </section>
+
+    <!-- ADMIN PANEL -->
+    <section class="role-panel" id="panel-admin" style="padding-top:8px;">
+        <div class="eyebrow">AUCTIONEER CONTROLS</div>
+        <h2 class="sec-title">Run the <b>auction</b></h2>
+
+        <div class="admin-grid fade-up">
+            <div class="admin-row">
+                <button class="btn btn-ghost" id="btnMarkSold">✅ Mark Sold</button>
+                <button class="btn btn-ghost" id="btnMarkUnsold">❌ Mark Unsold</button>
+            </div>
+            <div class="admin-row">
+                <button class="btn btn-ghost" id="btnVoidBid">↩ Clear Current Bid</button>
+                <button class="btn btn-ghost" id="btnClearStage">🧹 Clear Stage</button>
+            </div>
+        </div>
+
+        <div class="eyebrow" style="margin-top:20px;">PLAYERS — PICK ANYONE, ANY ROUND</div>
+        <div id="roundBandsContainer"></div>
+
+        <div class="eyebrow" style="margin-top:20px;">SUMMARIES</div>
+        <div class="admin-row fade-up" style="flex-wrap:wrap; gap:8px;">
+            <button class="btn btn-ghost" data-summary-round="1" style="flex:1 1 45%;">Round 1 Result</button>
+            <button class="btn btn-ghost" data-summary-round="2" style="flex:1 1 45%;">Round 2 Result</button>
+            <button class="btn btn-ghost" data-summary-round="3" style="flex:1 1 45%;">Round 3 Result</button>
+            <button class="btn btn-ghost" data-summary-round="4" style="flex:1 1 45%;">Round 4 Result</button>
+        </div>
+        <button class="btn btn-primary" style="width:100%; margin-top:10px;" id="btnFinalSummary">🏆 Final Summary — All Teams</button>
+
+        <div class="eyebrow" style="margin-top:20px;">BID LOG</div>
+        <div class="admin-log" id="adminLog"></div>
+    </section>
+
+    <!-- TEAMS PURSE GRID -->
+    <section id="pursesSection">
+        <div class="eyebrow">FRANCHISE PURSES</div>
+        <h2 class="sec-title">All <b>8 teams</b></h2>
+        <div class="teams-purse-grid" id="teamsPurseGrid"></div>
+        <div class="caveat-box fade-up">
+            <b>Note:</b> Captain and admin access is real Supabase Auth (email + password). Every bid, sale, undo, and round action is validated and executed inside a database function — the browser never writes auction state directly.
+        </div>
+    </section>
+
+    <!-- SUMMARY MODAL (shared for round + final — purely client-driven, no DB phase, so it can never get stuck reopening) -->
+    <div class="summary-modal" id="summaryModal">
+        <div class="summary-card">
+            <div class="summary-title display" id="summaryTitle">ROUND 1 RESULT</div>
+            <div class="summary-sub" id="summarySub"></div>
+            <div class="summary-list" id="summaryList"></div>
+            <button class="btn btn-primary summary-close" id="summaryClose" style="width:100%;">Close</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-brand"><div class="crest" style="width:26px;height:26px;"></div><div class="brand-text">FREEFIRE<b>XIPL</b></div></div>
+        <p class="foot-tag">The unofficial home of Free Fire XIPL Season 12 — fixtures, standings and every clutch moment of the season.</p>
+        <div class="foot-social"><div class="soc">✕</div><div class="soc">◎</div><div class="soc">▶</div><div class="soc">✈</div></div>
+        <div class="foot-copy">© 2026 FREEFIRE XIPL. Fan-made tournament hub. Not affiliated with Garena.</div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="48" height="48" viewBox="0 0 48 48">
+            <circle class="btt-bg" cx="24" cy="24" r="21" />
+            <circle class="btt-fill" id="bttFill" cx="24" cy="24" r="21" stroke-dasharray="131.9" stroke-dashoffset="131.9" />
+        </svg>
+        <span>↑</span>
+    </button>
+    <script>
+/* =========================================================================
+   FREEFIRE XIPL — SHARED THEME BEHAVIOR (copied verbatim pattern from home.html)
+   ========================================================================= */
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+        window.addEventListener('pageshow', (event) => { if (event.persisted) { window.location.reload(); } });
+
+        setTimeout(() => {
+            const splash = document.getElementById('splash');
+            splash.animate([{ transform: "scale(1)", opacity: 1 }, { transform: "scale(2.5)", opacity: 0 }], { duration: 1600, easing: "cubic-bezier(.2,.8,.2,1)" });
+            setTimeout(() => splash.style.display = "none", 600);
+        }, 2100);
+
+        const menuBtn = document.getElementById('menuBtn');
+        const navDrawer = document.getElementById('navDrawer');
+        const navOverlay = document.getElementById('navOverlay');
+        const navClose = document.getElementById('navClose');
+        function openNav() { closeTheme(); navDrawer.classList.add('show'); navOverlay.classList.add('show'); }
+        function closeNav() { navDrawer.classList.remove('show'); navOverlay.classList.remove('show'); }
+        menuBtn.addEventListener('click', openNav);
+        navClose.addEventListener('click', closeNav);
+        navOverlay.addEventListener('click', closeNav);
+
+        const THEME_KEY = 'xipl-theme';
+        const DEFAULT_THEME = 'golden-fire';
+        const themeBtn = document.getElementById('themeBtn');
+        const themePanel = document.getElementById('themePanel');
+        const themeOverlay = document.getElementById('themeOverlay');
+        const themeClose = document.getElementById('themeClose');
+        const themeOpts = document.querySelectorAll('.theme-opt');
+        function markActiveTheme(theme) { themeOpts.forEach(opt => opt.classList.toggle('active', opt.dataset.theme === theme)); }
+        function applyTheme(theme, persist) {
+            document.documentElement.classList.add('theme-transitioning');
+            document.documentElement.setAttribute('data-theme', theme);
+            markActiveTheme(theme);
+            if (persist) { try { localStorage.setItem(THEME_KEY, theme); } catch (e) { } }
+            window.clearTimeout(applyTheme._t);
+            applyTheme._t = window.setTimeout(() => { document.documentElement.classList.remove('theme-transitioning'); }, 650);
+        }
+        function openTheme() { themePanel.classList.add('show'); themeOverlay.classList.add('show'); themeBtn.setAttribute('aria-expanded', 'true'); }
+        function closeTheme() { themePanel.classList.remove('show'); themeOverlay.classList.remove('show'); themeBtn.setAttribute('aria-expanded', 'false'); }
+        themeBtn.addEventListener('click', () => { if (themePanel.classList.contains('show')) closeTheme(); else { closeNav(); openTheme(); } });
+        themeClose.addEventListener('click', closeTheme);
+        themeOverlay.addEventListener('click', closeTheme);
+        themeOpts.forEach(opt => { opt.addEventListener('click', () => { applyTheme(opt.dataset.theme, true); closeTheme(); }); });
+        markActiveTheme(document.documentElement.getAttribute('data-theme') || DEFAULT_THEME);
+
+        const emberField = document.getElementById('embers');
+        for (let i = 0; i < 22; i++) {
+            const e = document.createElement('div');
+            e.className = 'ember';
+            e.style.left = Math.random() * 100 + '%';
+            e.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+            e.style.animationDuration = (6 + Math.random() * 6) + 's';
+            e.style.animationDelay = (Math.random() * 8) + 's';
+            emberField.appendChild(e);
+        }
+
+        const revealEls = document.querySelectorAll('.fade-up');
+        const io = new IntersectionObserver((entries) => { entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, { threshold: 0.15 });
+        revealEls.forEach(el => io.observe(el));
+
+        const scrollFillEl = document.getElementById('scrollFill');
+        const backToTopBtn = document.getElementById('backToTop');
+        const bttFillEl = document.getElementById('bttFill');
+        const BTT_C = 131.9;
+        function updateScrollChrome() {
+            const doc = document.documentElement;
+            const max = doc.scrollHeight - doc.clientHeight;
+            const pct = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+            if (scrollFillEl) scrollFillEl.style.width = (pct * 100) + '%';
+            if (bttFillEl) bttFillEl.style.strokeDashoffset = BTT_C * (1 - pct);
+            if (backToTopBtn) backToTopBtn.classList.toggle('show', window.scrollY > 400);
+        }
+        window.addEventListener('scroll', updateScrollChrome, { passive: true });
+        window.addEventListener('load', updateScrollChrome);
+        updateScrollChrome();
+        if (backToTopBtn) backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
+    <script>
+/* =========================================================================
+   FREEFIRE XIPL — AUCTION HUB ENGINE (v2)
+   Changes from v1, per direct feedback:
+   - No shuffled/generated round order. Admin manually picks ANY of the 40
+     players, from any tier band, in any order, at any time.
+   - Fixed bid math: current_bid starts NULL ("no bids yet"), not pre-seeded
+     with the minimum. The first bid a captain places opens at the player's
+     minimum; every bid after that adds the clicked increment on top.
+   - Round-summary / final-summary are plain client-side modals triggered by
+     admin buttons — not tied to a database "phase", so they can never
+     silently reopen themselves after being closed.
+   - Only one timer exists anywhere on this page: a 10-second, purely
+     ceremonial "Round N begins in..." countdown when admin explicitly starts
+     it. No background polling timer — this page relies entirely on Realtime.
+   - Zero native browser alert()/confirm() popups. All feedback renders as
+     an in-page toast that matches the site's own theme.
+   ========================================================================= */
+
+        const SUPABASE_URL = 'https://ndioutmihxodqknvgfju.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kaW91dG1paHhvZHFrbnZnZmp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwNTg2NDMsImV4cCI6MjA5ODYzNDY0M30.KeSyXI6DFvYnKbBxICmrmQ8t8eFIoxPn9Ln1aBU0OUk';
+        const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const TEAM_META = {
+            RCB: { name: 'Royal Challengers', color: '#e2394a' },
+            CSK: { name: 'Chennai Super Kings', color: '#f5c518' },
+            MI: { name: 'Mumbai Indians', color: '#045d9e' },
+            DC: { name: 'Delhi Capitals', color: '#1f5fc4' },
+            KKR: { name: 'Kolkata Knight Riders', color: '#7d4bb0' },
+            SRH: { name: 'Sunrisers', color: '#f26522' },
+            RR: { name: 'Rajasthan Royals', color: '#e03daf' },
+            PBKS: { name: 'Punjab Kings', color: '#c31d1d' },
+        };
+        const TEAM_IDS = Object.keys(TEAM_META);
+        const TIER_PRICE = { top10: 10, top20: 6, top30: 4, top40: 2 };
+        const ROUND_TIER = { 1: 'top10', 2: 'top20', 3: 'top30', 4: 'top40' };
+        const ROUND_LABEL = { 1: 'TIER 1 — Top 10 (min ₹10Cr)', 2: 'TIER 2 — Top 20 (min ₹6Cr)', 3: 'TIER 3 — Top 30 (min ₹4Cr)', 4: 'TIER 4 — Top 40 (min ₹2Cr)' };
+
+        let currentUser = null, isAdmin = false, myTeamId = null;
+        let teamsCache = {}, playersCache = {}, stateCache = null;
+        let countdownTimer = null;
+
+        const fmtCr = (n) => (n === null || n === undefined) ? '—' : `₹${Number(n).toFixed(0)}Cr`;
+        const $ = (id) => document.getElementById(id);
+
+        // ---------- TOAST (replaces every alert()/confirm()) ----------
+        function toast(message, type) {
+            const stack = $('toastStack');
+            const el = document.createElement('div');
+            el.className = 'toast' + (type ? ' ' + type : '');
+            el.textContent = message;
+            stack.appendChild(el);
+            requestAnimationFrame(() => el.classList.add('show'));
+            setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3600);
+        }
+
+        // ---------- ROLE TABS ----------
+        document.querySelectorAll('.role-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                showRolePanel(tab.dataset.role);
+            });
+        });
+        function showRolePanel(role) {
+            document.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
+            if (role === 'public') return;
+            if (role === 'account') { $('panel-login').classList.add('active'); refreshAccountUI(); }
+            if (role === 'captain') $('panel-captain').classList.add('active');
+            if (role === 'admin') $('panel-admin').classList.add('active');
+        }
+
+        // ---------- AUTH ----------
+        $('authLoginBtn').addEventListener('click', async () => {
+            $('authError').style.display = 'none';
+            const email = $('authEmail').value.trim();
+            const password = $('authPassword').value;
+            if (!email || !password) { showAuthError('Enter both email and password.'); return; }
+            $('authLoginBtn').disabled = true; $('authLoginBtn').textContent = 'Signing in…';
+            const { data, error } = await sb.auth.signInWithPassword({ email, password });
+            $('authLoginBtn').disabled = false; $('authLoginBtn').textContent = 'Sign In';
+            if (error) { showAuthError(error.message || 'Sign in failed.'); return; }
+            currentUser = data.user;
+            await resolveRole();
+        });
+        $('signOutBtn').addEventListener('click', async () => {
+            await sb.auth.signOut();
+            currentUser = null; isAdmin = false; myTeamId = null;
+            document.querySelectorAll('.role-tab[data-role="captain"], .role-tab[data-role="admin"]').forEach(t => t.remove());
+            refreshAccountUI(); showRolePanel('public');
+        });
+        function showAuthError(msg) { const el = $('authError'); el.textContent = msg; el.style.display = 'block'; }
+
+        async function resolveRole() {
+            if (!currentUser) return;
+            const [{ data: adminRow }, { data: teamRow }] = await Promise.all([
+                sb.from('ffxipl_s12_admins').select('user_id').eq('user_id', currentUser.id).maybeSingle(),
+                sb.from('ffxipl_s12_teams').select('*').eq('captain_user_id', currentUser.id).maybeSingle(),
+            ]);
+            isAdmin = !!adminRow;
+            myTeamId = teamRow ? teamRow.id : null;
+
+            document.querySelectorAll('.role-tab[data-role="captain"], .role-tab[data-role="admin"]').forEach(t => t.remove());
+            const tabs = document.querySelector('.role-tabs');
+            if (myTeamId) {
+                const t = document.createElement('div');
+                t.className = 'role-tab'; t.dataset.role = 'captain'; t.textContent = `🎖️ ${myTeamId} Captain`;
+                t.addEventListener('click', () => { document.querySelectorAll('.role-tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); showRolePanel('captain'); });
+                tabs.appendChild(t);
+                $('capTeamTitle').innerHTML = `Team <b>${myTeamId}</b>`;
+                renderCaptainPanel();
+            }
+            if (isAdmin) {
+                const t = document.createElement('div');
+                t.className = 'role-tab'; t.dataset.role = 'admin'; t.textContent = '🛡️ Admin';
+                t.addEventListener('click', () => { document.querySelectorAll('.role-tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); showRolePanel('admin'); });
+                tabs.appendChild(t);
+                renderRoundBands();
+            }
+            refreshAccountUI();
+            if (myTeamId) showRolePanel('captain'); else if (isAdmin) showRolePanel('admin'); else showRolePanel('account');
+        }
+
+        function refreshAccountUI() {
+            if (!currentUser) { $('loginBox').style.display = 'block'; $('loggedInBox').style.display = 'none'; return; }
+            $('loginBox').style.display = 'none'; $('loggedInBox').style.display = 'block';
+            $('loggedInLabel').textContent = `Signed in as ${currentUser.email}`;
+            const roles = [];
+            if (isAdmin) roles.push('Admin');
+            if (myTeamId) roles.push(`${myTeamId} Captain`);
+            $('roleAssignedText').textContent = roles.length ? `Role: ${roles.join(' + ')}. Use the tab that appeared above.` : 'No admin or captain role is linked to this account yet.';
+        }
+
+        // ---------- DATA LOADING ----------
+        async function loadTeams() {
+            const { data, error } = await sb.from('ffxipl_s12_teams').select('*');
+            if (error) { console.error(error); return; }
+            teamsCache = {}; (data || []).forEach(t => teamsCache[t.id] = t);
+            renderPurseGrid();
+        }
+        async function loadPlayers() {
+            const { data, error } = await sb.from('ffxipl_s12_public_players').select('*');
+            if (error) { console.error(error); return; }
+            playersCache = {}; (data || []).forEach(p => playersCache[p.id] = p);
+            renderRoundBands();
+            updateSoldOverallCount();
+        }
+        async function loadState() {
+            const { data, error } = await sb.from('ffxipl_s12_auction_state').select('*').eq('id', 1).single();
+            if (error) { console.error(error); return; }
+            stateCache = data; renderStage();
+        }
+        function updateSoldOverallCount() {
+            const sold = Object.values(playersCache).filter(p => p.team_id).length;
+            $('soldOverallCount').textContent = sold;
+        }
+
+        // ---------- REALTIME (this page's entire live-update mechanism — no polling) ----------
+        function subscribeRealtime() {
+            sb.channel('auction-state-changes')
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'ffxipl_s12_auction_state' }, payload => { stateCache = payload.new; renderStage(); })
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'ffxipl_s12_teams' }, payload => { teamsCache[payload.new.id] = payload.new; renderPurseGrid(); if (myTeamId) renderCaptainPanel(); })
+                .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'ffxipl_s12_bid_log' }, payload => { flashBid(payload.new); pushAdminLog(payload.new); })
+                // ffxipl_s12_public_players is a VIEW — Postgres logical replication can only
+                // stream real tables, so we listen on the underlying table and re-fetch via the view.
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'ffxipl_s12_registrations' }, () => loadPlayers())
+                .subscribe();
+
+            const room = sb.channel('auction-room', { config: { presence: { key: crypto.randomUUID() } } });
+            room.on('presence', { event: 'sync' }, () => {
+                const all = Object.values(room.presenceState()).flat();
+                $('viewerCount').textContent = all.length;
+                $('captainCount').textContent = new Set(all.filter(p => p.role === 'captain').map(p => p.team)).size;
+            }).subscribe(async (status) => {
+                if (status === 'SUBSCRIBED') await room.track({ role: myTeamId ? 'captain' : (isAdmin ? 'admin' : 'viewer'), team: myTeamId, joined_at: Date.now() });
+            });
+        }
+
+        // ---------- RENDER: STAGE ----------
+        function renderStage() {
+            if (!stateCache) return;
+            const s = stateCache;
+            $('countdownOverlay').classList.remove('show');
+            $('soldOverlay').classList.remove('show');
+            $('unsoldOverlay').classList.remove('show');
+            clearInterval(countdownTimer);
+
+            const player = playersCache[s.current_player_id];
+            if (player) {
+                $('stageRoundPill').textContent = ROUND_LABEL[roundForTier(player.auction_tier)]?.split(' —')[0] || 'ROUND —';
+                $('stagePhoto').textContent = (player.ign || player.real_name || '?').slice(0, 2).toUpperCase();
+                $('stageName').textContent = player.ign || '—';
+                $('stageMeta').textContent = `${player.real_name} · UID ${player.uid} · Level ${player.level}`;
+                $('stageOpen').textContent = fmtCr(player.auction_base_price ?? TIER_PRICE[player.auction_tier]);
+            } else {
+                $('stageRoundPill').textContent = 'ROUND —';
+                $('stagePhoto').textContent = '?';
+                $('stageName').textContent = 'No player on the block yet';
+                $('stageMeta').textContent = 'Admin can put any player up at any time';
+                $('stageOpen').textContent = '—';
+            }
+            $('stageBid').textContent = s.current_bid === null || s.current_bid === undefined ? 'No bids yet' : fmtCr(s.current_bid);
+            $('stageBidTeam').textContent = s.current_bid_team_id ? `Leading bid: ${s.current_bid_team_id} — ${TEAM_META[s.current_bid_team_id]?.name || ''}` : '';
+            $('stageBidTeam').style.color = s.current_bid_team_id ? TEAM_META[s.current_bid_team_id]?.color : 'var(--gold-pale)';
+
+            if (s.phase === 'round_countdown') {
+                startCountdownDisplay(s.countdown_target, `TIER ${s.current_round} begins in`);
+            } else if (s.phase === 'sold') {
+                $('soldSub').innerHTML = `— to <b style="color:${TEAM_META[s.current_bid_team_id]?.color}">${s.current_bid_team_id}</b> for <b>${fmtCr(s.current_bid)}</b><br>Payout: <b>${fmtCr(s.current_bid / 2)}</b>`;
+                $('soldOverlay').classList.add('show');
+            } else if (s.phase === 'unsold') {
+                $('unsoldOverlay').classList.add('show');
+            }
+            highlightTeamOnBlock(s.current_bid_team_id);
+            renderRoundBands();
+            if (myTeamId) renderCaptainPanel();
+        }
+
+        function roundForTier(tier) { return { top10: 1, top20: 2, top30: 3, top40: 4 }[tier] || 0; }
+
+        function startCountdownDisplay(targetTs, label) {
+            $('countdownLabel').textContent = label;
+            $('countdownOverlay').classList.add('show');
+            function tick() {
+                const secs = Math.max(0, Math.ceil((targetTs - Date.now()) / 1000));
+                $('countdownNum').textContent = secs;
+                if (secs <= 0) { clearInterval(countdownTimer); $('countdownOverlay').classList.remove('show'); }
+            }
+            tick();
+            countdownTimer = setInterval(tick, 250);
+        }
+
+        function flashBid() {
+            const valEl = $('stageBid');
+            valEl.classList.add('tick');
+            setTimeout(() => valEl.classList.remove('tick'), 220);
+        }
+        function pushAdminLog(bidRow) {
+            const log = $('adminLog'); if (!log) return;
+            const row = document.createElement('div');
+            row.className = 'admin-log-row';
+            row.innerHTML = `<b>${bidRow.team_id}</b> bid ${fmtCr(bidRow.bid_amount)}`;
+            log.prepend(row);
+        }
+
+        // ---------- RENDER: TEAM PURSE GRID ----------
+        function renderPurseGrid() {
+            const grid = $('teamsPurseGrid');
+            grid.innerHTML = '';
+            TEAM_IDS.forEach(id => {
+                const t = teamsCache[id] || { purse_total: 100, purse_spent: 0, players_bought: 0 };
+                const remaining = (t.purse_total ?? 100) - (t.purse_spent ?? 0);
+                const pct = Math.min(100, ((t.purse_spent ?? 0) / (t.purse_total ?? 100)) * 100);
+                const done = (t.players_bought ?? 0) >= 5;
+                const el = document.createElement('div');
+                el.className = 'tp-card'; el.id = 'tp-' + id;
+                el.style.setProperty('--team-color', TEAM_META[id].color);
+                el.innerHTML = `
+                    ${done ? '<span class="tp-done">Squad Full</span>' : ''}
+                    <div class="tp-head"><span class="tp-abbr display">${id}</span><span class="tp-cap">Captain<br>${t.captain_name || '—'}</span></div>
+                    <div class="tp-purse-track"><div class="tp-purse-fill" style="width:${pct}%"></div></div>
+                    <div class="tp-nums"><span>Spent <b>${fmtCr(t.purse_spent ?? 0)}</b></span><span>Left <b>${fmtCr(remaining)}</b></span></div>
+                    <div class="tp-players">${t.players_bought ?? 0}/5 players bought</div>`;
+                grid.appendChild(el);
+            });
+            highlightTeamOnBlock(stateCache?.current_bid_team_id);
+        }
+        function highlightTeamOnBlock(teamId) {
+            document.querySelectorAll('.tp-card').forEach(c => c.classList.remove('on-block'));
+            if (teamId) { const el = $('tp-' + teamId); if (el) el.classList.add('on-block'); }
+        }
+
+        // ---------- RENDER: CAPTAIN PANEL ----------
+        function renderCaptainPanel() {
+            if (!myTeamId) return;
+            const t = teamsCache[myTeamId] || { purse_total: 100, purse_spent: 0, players_bought: 0 };
+            $('capPurseLeft').textContent = fmtCr((t.purse_total ?? 100) - (t.purse_spent ?? 0));
+            $('capPlayersLeft').textContent = 5 - (t.players_bought ?? 0);
+            const player = playersCache[stateCache?.current_player_id];
+            $('capBidHint').innerHTML = stateCache?.current_bid == null && player
+                ? `First bid opens at this player's minimum: <b>${fmtCr(player.auction_base_price ?? TIER_PRICE[player.auction_tier])}</b>`
+                : 'Tap an amount to add it to the current bid.';
+            const roster = Object.values(playersCache).filter(p => p.team_id === myTeamId);
+            const list = $('capRosterList');
+            list.innerHTML = roster.length ? '' : '<div class="pl-row"><span class="n">No players purchased yet</span></div>';
+            roster.forEach(p => {
+                const row = document.createElement('div');
+                row.className = 'pl-row';
+                row.innerHTML = `<span class="n">${p.ign || p.real_name}</span><span class="p">${fmtCr(p.final_bid_price)}</span>`;
+                list.appendChild(row);
+            });
+        }
+
+        // ---------- CAPTAIN: PLACE BID ----------
+        document.querySelectorAll('.bid-btn').forEach(btn => btn.addEventListener('click', () => placeBid(parseFloat(btn.dataset.inc))));
+        async function placeBid(inc) {
+            if (!myTeamId) { toast('Sign in as your team\'s captain first.', 'error'); return; }
+            document.querySelectorAll('.bid-btn').forEach(b => b.disabled = true);
+            const { error } = await sb.rpc('ffxipl_s12_place_bid', { p_increment: inc });
+            document.querySelectorAll('.bid-btn').forEach(b => b.disabled = false);
+            if (error) toast(error.message || 'Bid failed.', 'error');
+        }
+
+        // ---------- ADMIN ACTIONS ----------
+        async function callAdminRpc(name, params) {
+            if (!isAdmin) { toast('Admin sign-in required.', 'error'); return false; }
+            const { error } = await sb.rpc(name, params || {});
+            if (error) { toast(error.message || `${name} failed.`, 'error'); return false; }
+            return true;
+        }
+
+        $('btnMarkSold').addEventListener('click', async () => { if (await callAdminRpc('ffxipl_s12_mark_sold')) toast('Player marked sold.', 'success'); });
+        $('btnMarkUnsold').addEventListener('click', async () => { if (await callAdminRpc('ffxipl_s12_mark_unsold')) toast('Player marked unsold.', 'success'); });
+        $('btnVoidBid').addEventListener('click', async () => { if (await callAdminRpc('ffxipl_s12_void_bid')) toast('Current bid cleared.', 'success'); });
+        $('btnClearStage').addEventListener('click', async () => { if (await callAdminRpc('ffxipl_s12_clear_stage')) toast('Stage cleared.', 'success'); });
+
+        async function putPlayerOnBlock(playerId) {
+            const ok = await callAdminRpc('ffxipl_s12_put_player_on_block', { p_player_id: playerId });
+            if (ok) toast('Player is now on the block.', 'success');
+        }
+        async function undoSale(playerId) {
+            const ok = await callAdminRpc('ffxipl_s12_undo_sale', { p_player_id: playerId });
+            if (ok) toast('Sale undone — player returned to the pool.', 'success');
+        }
+
+        // ---------- ADMIN: ROUND-START CEREMONY (the ONLY timer on this page) ----------
+        document.addEventListener('click', async (e) => {
+            const startBtn = e.target.closest('[data-start-round]');
+            if (startBtn) {
+                const roundNum = parseInt(startBtn.dataset.startRound, 10);
+                await callAdminRpc('ffxipl_s12_start_round_countdown', { p_round: roundNum });
+            }
+        });
+
+        // ---------- ADMIN: ROUND BAND PLAYER BROWSER ----------
+        function renderRoundBands() {
+            const container = $('roundBandsContainer');
+            if (!container || !isAdmin) return;
+            const openBands = new Set(Array.from(container.querySelectorAll('.round-band-body.open')).map(el => el.dataset.round));
+            container.innerHTML = '';
+            [1, 2, 3, 4].forEach(roundNum => {
+                const tier = ROUND_TIER[roundNum];
+                const players = Object.values(playersCache).filter(p => p.auction_tier === tier).sort((a, b) => (a.ign || '').localeCompare(b.ign || ''));
+                const soldCount = players.filter(p => p.team_id).length;
+
+                const band = document.createElement('div');
+                band.className = 'round-band';
+                const head = document.createElement('div');
+                head.className = 'round-band-head';
+                head.innerHTML = `<div><div class="t">${ROUND_LABEL[roundNum]}</div><div class="sub">${soldCount}/${players.length} sold</div></div>
+                    <button class="mini-btn" data-start-round="${roundNum}">⏱ Start Round (10s)</button>`;
+                const body = document.createElement('div');
+                body.className = 'round-band-body' + (openBands.has(String(roundNum)) ? ' open' : '');
+                body.dataset.round = roundNum;
+
+                players.forEach(p => {
+                    const row = document.createElement('div');
+                    row.className = 'band-player-row';
+                    const isOnBlock = stateCache?.current_player_id === p.id;
+                    let statusHtml, actionHtml;
+                    if (p.team_id) {
+                        statusHtml = `<span class="status-tag sold">${p.team_id} · ${fmtCr(p.final_bid_price)}</span>`;
+                        actionHtml = `<button class="mini-btn ghost-live" data-undo="${p.id}">Undo Sale</button>`;
+                    } else if (isOnBlock) {
+                        statusHtml = `<span class="status-tag block">On the block</span>`;
+                        actionHtml = '';
+                    } else {
+                        statusHtml = `<span class="status-tag avail">Available</span>`;
+                        actionHtml = `<button class="mini-btn" data-put="${p.id}">Put on Block</button>`;
+                    }
+                    row.innerHTML = `<span class="n">${p.ign || p.real_name}<span class="m">${p.real_name} · UID ${p.uid} · Lvl ${p.level}</span></span>
+                        <div class="band-row-actions">${statusHtml}${actionHtml}</div>`;
+                    body.appendChild(row);
+                });
+
+                head.addEventListener('click', (e) => { if (e.target.closest('[data-start-round]')) return; body.classList.toggle('open'); });
+                band.appendChild(head); band.appendChild(body);
+                container.appendChild(band);
+            });
+            container.querySelectorAll('[data-put]').forEach(b => b.addEventListener('click', () => putPlayerOnBlock(b.dataset.put)));
+            container.querySelectorAll('[data-undo]').forEach(b => b.addEventListener('click', () => undoSale(b.dataset.undo)));
+        }
+
+        // ---------- SUMMARIES (plain client-side modals — no DB phase involved,
+        // so closing them is final and they can never silently reopen) ----------
+        document.querySelectorAll('[data-summary-round]').forEach(btn => {
+            btn.addEventListener('click', () => openRoundSummary(parseInt(btn.dataset.summaryRound, 10)));
+        });
+        function openRoundSummary(roundNum) {
+            const tier = ROUND_TIER[roundNum];
+            const players = Object.values(playersCache).filter(p => p.auction_tier === tier);
+            const sold = players.filter(p => p.team_id);
+            const list = $('summaryList');
+            list.innerHTML = '';
+            if (!sold.length) list.innerHTML = '<div class="summary-row"><span>No players sold in this round yet.</span></div>';
+            sold.sort((a, b) => (b.final_bid_price || 0) - (a.final_bid_price || 0)).forEach(p => {
+                const row = document.createElement('div');
+                row.className = 'summary-row';
+                row.innerHTML = `<span><span class="p">${p.ign || p.real_name}</span><br><span class="t">→ ${p.team_id}</span></span><span class="amt">${fmtCr(p.final_bid_price)}</span>`;
+                list.appendChild(row);
+            });
+            $('summaryTitle').textContent = `TIER ${roundNum} RESULT`;
+            $('summarySub').textContent = `${sold.length} of ${players.length} players sold`;
+            $('summaryModal').classList.add('show');
+        }
+        $('btnFinalSummary').addEventListener('click', () => {
+            const list = $('summaryList');
+            list.innerHTML = '';
+            TEAM_IDS.forEach(id => {
+                const t = teamsCache[id];
+                const roster = Object.values(playersCache).filter(p => p.team_id === id);
+                const header = document.createElement('div');
+                header.className = 'summary-row'; header.style.background = 'rgba(var(--gold-rgb),0.08)';
+                header.innerHTML = `<span class="p" style="color:${TEAM_META[id].color}">${id} — ${t?.captain_name || ''}</span><span class="amt">${fmtCr(t?.purse_spent ?? 0)} spent</span>`;
+                list.appendChild(header);
+                roster.forEach(p => {
+                    const row = document.createElement('div');
+                    row.className = 'summary-row';
+                    row.innerHTML = `<span>${p.ign || p.real_name}</span><span class="amt">${fmtCr(p.final_bid_price)}</span>`;
+                    list.appendChild(row);
+                });
+            });
+            $('summaryTitle').textContent = '🏆 FINAL SUMMARY';
+            $('summarySub').textContent = 'All 8 teams — click Close whenever you\'re done';
+            $('summaryModal').classList.add('show');
+        });
+        // Closing is unconditional and final — nothing re-opens this modal on its own.
+        $('summaryClose').addEventListener('click', () => $('summaryModal').classList.remove('show'));
+
+        // ---------- BOOT ----------
+        (async function boot() {
+            const { data: { session } } = await sb.auth.getSession();
+            if (session?.user) { currentUser = session.user; await resolveRole(); }
+            sb.auth.onAuthStateChange((event) => {
+                if (event === 'SIGNED_OUT') { currentUser = null; isAdmin = false; myTeamId = null; refreshAccountUI(); }
+            });
+            await loadTeams();
+            await loadPlayers();
+            await loadState();
+            subscribeRealtime();
+        })();
+    </script>
+</body>
+</html>

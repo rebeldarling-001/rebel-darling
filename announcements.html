@@ -17,7 +17,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>About — FREEFIRE XIPL Season 11</title>
+    <title>Announcements — FREEFIRE XIPL Season 11</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
@@ -1927,207 +1927,221 @@
             color: var(--ink-faint);
         }
 
-        /* ============ MISSION / STORY ============ */
-        .story-card {
-            margin: 26px 20px 0;
-            border-radius: 20px;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            padding: 20px 18px;
-        }
-
-        .story-card p {
-            font-size: 13px;
-            color: var(--ink-dim);
-            line-height: 1.65;
-        }
-
-        .story-card p + p {
-            margin-top: 12px;
-        }
-
-        .story-card b {
-            color: var(--gold-pale);
-        }
-
-        /* ============ QUICK FACTS ============ */
-        .fact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 0 20px;
-            margin-top: 16px;
-        }
-
-        .fact {
-            border-radius: 16px;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            padding: 14px 10px;
-            text-align: center;
-        }
-
-        .fact .num {
-            font-family: 'Space Mono', monospace;
-            font-size: 19px;
-            color: var(--gold);
-            font-weight: 700;
-        }
-
-        .fact .lbl {
-            margin-top: 4px;
-            font-size: 9px;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--ink-faint);
-            line-height: 1.3;
-        }
-
-        /* ============ ORGANIZER CARDS ============ */
-        .org-grid {
+        /* ============ CATEGORY FILTER CHIPS ============ */
+        .jump-row {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding: 10px 20px 6px;
+            gap: 8px;
+            margin-top: 22px;
+            padding: 4px 20px 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .org-card {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-radius: 16px;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            padding: 13px 14px;
+        .jump-row::-webkit-scrollbar {
+            display: none;
         }
 
-        .org-avatar {
+        .filter-chip {
             flex: 0 0 auto;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: var(--surface-2);
-            border: 1px solid var(--gold-deep);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 19px;
-        }
-
-        .org-name {
-            font-size: 13.5px;
-            font-weight: 700;
-            color: var(--ink);
-        }
-
-        .org-role {
-            margin-top: 2px;
-            font-size: 11px;
-            color: var(--gold-deep);
+            padding: 8px 14px;
+            border-radius: 100px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--ink-dim);
+            font-size: 11.5px;
             letter-spacing: 0.03em;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
         }
 
-        /* ============ FAQ ACCORDION ============ */
-        .faq-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding: 10px 20px 6px;
+        .filter-chip.active {
+            border-color: var(--gold-deep);
+            color: var(--gold-pale);
+            background: rgba(var(--gold-rgb), 0.1);
         }
 
-        .faq-item {
-            border-radius: 16px;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            overflow: hidden;
+        /* ============ PINNED SECTION ============ */
+        .pinned-wrap {
+            padding: 18px 20px 6px;
         }
 
-        .faq-q {
-            width: 100%;
+        .pinned-label {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 14px 15px;
-            background: transparent;
-            border: none;
-            text-align: left;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--ink);
-            cursor: pointer;
-        }
-
-        .faq-q .chev {
-            flex: 0 0 auto;
+            gap: 6px;
+            font-size: 10.5px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
             color: var(--gold);
-            font-size: 13px;
-            transition: transform 0.25s ease;
+            margin-bottom: 10px;
         }
 
-        .faq-item.open .faq-q .chev {
-            transform: rotate(180deg);
-        }
-
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-a-inner {
-            padding: 0 15px 15px;
-            font-size: 12.5px;
-            color: var(--ink-dim);
-            line-height: 1.6;
-        }
-
-        /* ============ CONTACT / SOCIALS ============ */
-        .contact-card {
-            margin: 26px 20px 0;
-            border-radius: 20px;
-            background: linear-gradient(150deg, var(--cta-a), var(--cta-b) 60%);
+        .pinned-card {
+            position: relative;
+            border-radius: 24px;
+            background: linear-gradient(150deg, var(--cta-a), var(--cta-b) 65%);
             border: 1px solid var(--gold-deep);
-            padding: 22px 18px;
-            text-align: center;
+            padding: 20px 18px;
+            overflow: hidden;
         }
 
-        .contact-card h3 {
+        .pinned-card::before {
+            content: '📌';
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            font-size: 15px;
+            opacity: 0.7;
+        }
+
+        .pinned-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .pinned-card h3 {
+            margin-top: 10px;
             font-family: 'Anton', sans-serif;
-            font-size: 20px;
+            font-size: 19px;
             color: var(--gold-pale);
+            letter-spacing: 0.01em;
+            line-height: 1.15;
+            padding-right: 26px;
         }
 
-        .contact-card p {
-            margin-top: 6px;
+        .pinned-card p {
+            margin-top: 8px;
             font-size: 12.5px;
             color: var(--ink-dim);
             line-height: 1.55;
         }
 
-        .contact-socials {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 16px;
-        }
-
-        .contact-soc {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid var(--gold-deep);
-            background: var(--surface);
+        .pinned-meta {
+            margin-top: 14px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 16px;
-            text-decoration: none;
+            justify-content: space-between;
+            gap: 10px;
         }
 
-        .contact-card .btn {
-            margin-top: 18px;
+        .post-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 10.5px;
+            color: var(--ink-faint);
+            letter-spacing: 0.03em;
+        }
+
+        /* ============ CATEGORY BADGES ============ */
+        .cat-badge {
+            display: inline-block;
+            font-size: 9.5px;
+            letter-spacing: 0.1em;
+            padding: 3px 9px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .cat-badge.schedule {
+            background: rgba(var(--gold-rgb), 0.12);
+            color: var(--gold-pale);
+            border: 1px solid var(--gold-deep);
+        }
+
+        .cat-badge.rules {
+            background: rgba(255, 149, 0, 0.14);
+            color: #ff9500;
+        }
+
+        .cat-badge.roster {
+            background: rgba(var(--mvp-glow-rgb), 0.16);
+            color: var(--gold-pale);
+        }
+
+        .cat-badge.general {
+            background: rgba(var(--gold-rgb), 0.08);
+            color: var(--ink-dim);
+            border: 1px solid var(--line);
+        }
+
+        .cat-badge.urgent {
+            background: rgba(var(--live-rgb), 0.14);
+            color: var(--live);
+        }
+
+        /* ============ FEED ============ */
+        .feed-wrap {
+            padding: 22px 20px 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .post-card {
+            border-radius: 18px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            padding: 16px 16px;
+            transition: opacity 0.2s ease;
+        }
+
+        .post-card.hidden-by-filter {
+            display: none;
+        }
+
+        .post-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .post-card h3 {
+            margin-top: 9px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.25;
+        }
+
+        .post-card p {
+            margin-top: 7px;
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            line-height: 1.55;
+        }
+
+        .post-bottom {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .post-link {
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            color: var(--gold);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .post-link:active {
+            opacity: 0.7;
+        }
+
+        .end-of-feed {
+            text-align: center;
+            padding: 20px 20px 4px;
+            font-size: 11.5px;
+            color: var(--ink-faint);
+            letter-spacing: 0.03em;
         }
     </style>
 </head>
@@ -2267,151 +2281,172 @@
             <a href="points.html" class="nav-link"><span class="nav-link-icon">📊</span> Points</a>
             <a href="leaderboard.html" class="nav-link"><span class="nav-link-icon">🏆</span> Leaderboard</a>
             <a href="hall-of-fame.html" class="nav-link"><span class="nav-link-icon">👑</span> Hall of Fame</a>
-            <a href="announcements.html" class="nav-link"><span class="nav-link-icon">📣</span> Announcements</a>
+            <a href="announcements.html" class="nav-link" aria-current="page"><span class="nav-link-icon">📣</span> Announcements</a>
             <a href="rules.html" class="nav-link"><span class="nav-link-icon">📖</span> Rules</a>
-            <a href="about.html" class="nav-link" aria-current="page"><span class="nav-link-icon">ℹ️</span> About</a>
+            <a href="about.html" class="nav-link"><span class="nav-link-icon">ℹ️</span> About</a>
         </div>
         <div class="nav-drawer-foot">FREEFIREXIPL · Season 11</div>
     </nav>
 
     <!-- PAGE HEAD -->
     <section class="page-head">
-        <div class="eyebrow fade-up">ℹ️ WHO WE ARE</div>
-        <h1 class="sec-title display fade-up d1">About <b>XIPL</b></h1>
-        <p class="sec-desc fade-up d2">The story behind the tournament, the people running it, and how to reach
-            us.</p>
-        <div class="updated-chip fade-up d3">🔥 SEASON 11 · FAN-RUN SINCE SEASON 1</div>
+        <div class="eyebrow fade-up">📣 OFFICIAL NEWS</div>
+        <h1 class="sec-title display fade-up d1">Season <b>Announcements</b></h1>
+        <p class="sec-desc fade-up d2">Every official update from the organizers — schedule changes, ruling
+            clarifications, roster moves and general news. Captains are expected to check this page regularly.</p>
+        <div class="updated-chip fade-up d3">🕒 LAST POSTED · SEASON 11 · GROUP STAGE</div>
     </section>
 
-    <!-- MISSION / STORY -->
-    <section class="story-card fade-up">
-        <p><b>FREEFIRE XIPL</b> is a fan-made Free Fire franchise tournament — built by players, for players. What
-            started as a scrappy weekend bracket among a few squads has grown into a full franchise league, complete
-            with a player auction, a season-long points race and a Grand Finale that decides who gets etched into
-            the Hall of Fame.</p>
-        <p>We're not affiliated with Garena — this is a passion project run by a small volunteer team who wanted a
-            structured, fair, competitive space for the community to play the game they love at a higher level.</p>
-        <p>Every season, twelve franchises battle it out across group stage, playoffs and a Grand Finale, all
-            governed by the same rulebook and scored the same way. No shortcuts, no favorites — just the arena
-            deciding who's best.</p>
+    <!-- CATEGORY FILTER -->
+    <nav class="jump-row fade-up d3" aria-label="Filter by category" id="filterRow">
+        <button class="filter-chip active" data-filter="all">All Updates</button>
+        <button class="filter-chip" data-filter="schedule">Schedule</button>
+        <button class="filter-chip" data-filter="rules">Rules</button>
+        <button class="filter-chip" data-filter="roster">Roster</button>
+        <button class="filter-chip" data-filter="general">General</button>
+        <button class="filter-chip" data-filter="urgent">Urgent</button>
+    </nav>
+
+    <!-- PINNED -->
+    <section class="pinned-wrap">
+        <div class="pinned-label fade-up">📌 Pinned</div>
+        <div class="pinned-card fade-up">
+            <div class="pinned-top">
+                <span class="cat-badge urgent">Urgent</span>
+                <span class="cat-badge schedule">Schedule</span>
+            </div>
+            <h3>Match Day 7 Moved to Sunday — Server Maintenance</h3>
+            <p>Garena's regional server maintenance window now overlaps with our original Match Day 7 slot. All
+                Group B fixtures originally set for Friday have been shifted to Sunday, same match times. Captains,
+                confirm your squad's availability in the Discord captains' channel by Thursday 8 PM.</p>
+            <div class="pinned-meta">
+                <span class="post-date">🕒 2 days ago</span>
+                <a class="post-link" href="schedule.html">View Schedule →</a>
+            </div>
+        </div>
     </section>
 
-    <!-- QUICK FACTS -->
-    <section class="fact-grid fade-up d1">
-        <div class="fact">
-            <div class="num">11</div>
-            <div class="lbl">Seasons Run</div>
+    <!-- FEED -->
+    <section class="feed-wrap" id="feedWrap">
+
+        <div class="post-card fade-up" data-cat="roster">
+            <div class="post-top">
+                <span class="cat-badge roster">Roster</span>
+            </div>
+            <h3>Team Phantom Reapers Confirms Substitute Ahead of Match Day 6</h3>
+            <p>Following an emergency roster notice, Team Phantom Reapers has registered their reserve rifler as an
+                eligible substitute for the remainder of the group stage, in line with the 24-hour notice rule.</p>
+            <div class="post-bottom">
+                <span class="post-date">🕒 3 days ago</span>
+                <a class="post-link" href="teams.html">View Teams →</a>
+            </div>
         </div>
-        <div class="fact">
-            <div class="num">12</div>
-            <div class="lbl">Franchises / Season</div>
+
+        <div class="post-card fade-up" data-cat="rules">
+            <div class="post-top">
+                <span class="cat-badge rules">Rules</span>
+            </div>
+            <h3>Clarification: Vehicle Exploits Now Covered Under Fair Play</h3>
+            <p>Following a review from Match Day 5, the organizers have clarified that intentionally glitching
+                vehicles through map geometry falls under the anti-exploit clause in Section 4 of the Rulebook.
+                Repeat offenses will be treated as a Fair Play violation.</p>
+            <div class="post-bottom">
+                <span class="post-date">🕒 4 days ago</span>
+                <a class="post-link" href="rules.html#fairplay">Read Rulebook →</a>
+            </div>
         </div>
-        <div class="fact">
-            <div class="num">100%</div>
-            <div class="lbl">Fan-Run</div>
+
+        <div class="post-card fade-up" data-cat="schedule">
+            <div class="post-top">
+                <span class="cat-badge schedule">Schedule</span>
+            </div>
+            <h3>Group Stage Map Rotation Released for Match Days 6–9</h3>
+            <p>The official map order for the remaining group stage matches is now live on the Schedule page.
+                Bermuda opens the rotation, followed by Purgatory, Kalahari and a return to Bermuda for the closing
+                fixtures.</p>
+            <div class="post-bottom">
+                <span class="post-date">🕒 5 days ago</span>
+                <a class="post-link" href="schedule.html">View Schedule →</a>
+            </div>
         </div>
+
+        <div class="post-card fade-up" data-cat="general">
+            <div class="post-top">
+                <span class="cat-badge general">General</span>
+            </div>
+            <h3>Season 11 Group Stage Passes the Halfway Mark</h3>
+            <p>With five of twelve franchises now locked into playoff contention on points alone, the race for the
+                remaining spots tightens heading into the back half of the group stage. Full standings are on the
+                Points page.</p>
+            <div class="post-bottom">
+                <span class="post-date">🕒 6 days ago</span>
+                <a class="post-link" href="points.html">View Points →</a>
+            </div>
+        </div>
+
+        <div class="post-card fade-up" data-cat="roster">
+            <div class="post-top">
+                <span class="cat-badge roster">Roster</span>
+            </div>
+            <h3>Auction Center Reopens Briefly for Injury Replacement Pick</h3>
+            <p>A one-time supplemental pick has been approved for a franchise affected by a player availability
+                issue. The mini-auction window opens for 24 hours — details on the Auction Center page.</p>
+            <div class="post-bottom">
+                <span class="post-date">🕒 8 days ago</span>
+                <a class="post-link" href="auction-center.html">View Auction →</a>
+            </div>
+        </div>
+
+        <div class="post-card fade-up" data-cat="rules">
+            <div class="post-top">
+                <span class="cat-badge rules">Rules</span>
+            </div>
+            <h3>Reminder: Screen-Share Checks Can Be Requested Mid-Match</h3>
+            <p>Organizers are reminding all players that spectator and screen-share checks may be requested at any
+                point during an official match without prior notice, per the Fair Play &amp; Anti-Cheat section of
+                the Rulebook.</p>
+            <div class="post-bottom">
+                <span class="post-date">🕒 9 days ago</span>
+                <a class="post-link" href="rules.html#fairplay">Read Rulebook →</a>
+            </div>
+        </div>
+
+        <div class="post-card fade-up" data-cat="general">
+            <div class="post-top">
+                <span class="cat-badge general">General</span>
+            </div>
+            <h3>Season 11 Officially Kicks Off</h3>
+            <p>Twelve franchises, one battleground. The opening ceremony stream drew a record turnout for the
+                XIPL franchise era, with the first Group A fixtures delivering three Booyahs decided in the final
+                zone.</p>
+            <div class="post-bottom">
+                <span class="post-date">🕒 2 weeks ago</span>
+                <a class="post-link" href="index.html">Back to Home →</a>
+            </div>
+        </div>
+
+        <div class="post-card fade-up" data-cat="general">
+            <div class="post-top">
+                <span class="cat-badge general">General</span>
+            </div>
+            <h3>Registration Hub Closes for Season 11</h3>
+            <p>Player and franchise registration for Season 11 is now closed. Every registered franchise has been
+                confirmed and moved through to the official auction. Thanks to everyone who signed up.</p>
+            <div class="post-bottom">
+                <span class="post-date">🕒 3 weeks ago</span>
+                <a class="post-link" href="registration-center.html">View Registration →</a>
+            </div>
+        </div>
+
     </section>
 
-    <!-- ORGANIZERS -->
-    <section style="padding: 30px 20px 0;">
-        <div class="eyebrow fade-up">👥 THE TEAM</div>
-        <h2 class="sec-title fade-up d1">Run by the <b>Community</b></h2>
-        <p class="sec-desc fade-up d2">A small crew handling everything from the auction to the casting desk.</p>
-    </section>
-    <div class="org-grid">
-        <div class="org-card fade-up">
-            <div class="org-avatar">🎙️</div>
-            <div>
-                <div class="org-name">Tournament Director</div>
-                <div class="org-role">Format, rulings & disputes</div>
-            </div>
-        </div>
-        <div class="org-card fade-up d1">
-            <div class="org-avatar">🔨</div>
-            <div>
-                <div class="org-name">Auction & Roster Ops</div>
-                <div class="org-role">Franchise auctions & registration</div>
-            </div>
-        </div>
-        <div class="org-card fade-up d2">
-            <div class="org-avatar">📊</div>
-            <div>
-                <div class="org-name">Stats & Standings</div>
-                <div class="org-role">Points, leaderboard & Hall of Fame</div>
-            </div>
-        </div>
-        <div class="org-card fade-up d3">
-            <div class="org-avatar">📣</div>
-            <div>
-                <div class="org-name">Community & Casting</div>
-                <div class="org-role">Announcements, socials & broadcast</div>
-            </div>
-        </div>
-    </div>
+    <p class="end-of-feed fade-up">You're all caught up — that's every announcement this season.</p>
 
-    <!-- FAQ -->
-    <section style="padding: 30px 20px 0;">
-        <div class="eyebrow fade-up">❓ FAQ</div>
-        <h2 class="sec-title fade-up d1">Common <b>Questions</b></h2>
-    </section>
-    <div class="faq-list" id="faqList">
-        <div class="faq-item fade-up">
-            <button class="faq-q">How do I get my team into XIPL?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">Registration opens once a season on the Registration Hub. Sign up your
-                    player profile there — once registration closes, eligible players go into the franchise
-                    auction.</div>
-            </div>
-        </div>
-        <div class="faq-item fade-up">
-            <button class="faq-q">How does the franchise auction work?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">Each of the twelve franchises bids a virtual budget to build a 4-starter,
-                    2-substitute roster from the pool of registered players. Full details are on the Auction Center
-                    page.</div>
-            </div>
-        </div>
-        <div class="faq-item fade-up">
-            <button class="faq-q">Is XIPL affiliated with Garena or Free Fire?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">No. XIPL is an independent, fan-made tournament. We're not affiliated with,
-                    endorsed by, or sponsored by Garena.</div>
-            </div>
-        </div>
-        <div class="faq-item fade-up">
-            <button class="faq-q">Where do I report a rule violation or a dispute?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">Team captains can raise disputes within 30 minutes of a match ending,
-                    through the official Discord. See the Rulebook's Disputes section for the full process.</div>
-            </div>
-        </div>
-        <div class="faq-item fade-up">
-            <button class="faq-q">How can I follow live matches and results?
-                <span class="chev">▾</span></button>
-            <div class="faq-a">
-                <div class="faq-a-inner">Live standings are always on the Leaderboard and Points pages, and match
-                    days are listed on the Schedule. Follow our socials below for stream links on match day.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTACT -->
-    <div class="contact-card fade-up">
-        <h3 class="display">GET IN TOUCH</h3>
-        <p>Questions, feedback, or want to get involved? Reach out through our socials — Discord is fastest for
-            match-day stuff.</p>
-        <div class="contact-socials">
-            <a class="contact-soc" href="#" aria-label="Discord">💬</a>
-            <a class="contact-soc" href="#" aria-label="X / Twitter">✕</a>
-            <a class="contact-soc" href="#" aria-label="Instagram">◎</a>
-            <a class="contact-soc" href="#" aria-label="YouTube">▶</a>
-        </div>
-        <a class="btn btn-primary" href="rules.html" style="display:block; text-decoration:none;">Read the
-            Rulebook</a>
+    <div class="cta-band fade-up" style="margin:32px 20px 0;">
+        <h3 class="display">DON'T MISS AN UPDATE</h3>
+        <p>Follow our socials for the fastest word on schedule changes and rulings.</p>
+        <a class="btn btn-primary" href="about.html" style="display:block; text-decoration:none;">Contact the
+            Organizers</a>
     </div>
 
     <!-- FOOTER -->
@@ -2607,25 +2642,19 @@ if (backToTopBtn) {
 
     </script>
     <script>
-        // ---------- FAQ accordion ----------
-        document.querySelectorAll('.faq-item').forEach(item => {
-            const q = item.querySelector('.faq-q');
-            const a = item.querySelector('.faq-a');
-            q.addEventListener('click', () => {
-                const isOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item.open').forEach(open => {
-                    if (open !== item) {
-                        open.classList.remove('open');
-                        open.querySelector('.faq-a').style.maxHeight = null;
-                    }
+        // ---------- Category filter chips ----------
+        const filterChips = document.querySelectorAll('.filter-chip');
+        const postCards = document.querySelectorAll('.post-card');
+
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                filterChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                const filter = chip.dataset.filter;
+                postCards.forEach(card => {
+                    const show = filter === 'all' || card.dataset.cat === filter;
+                    card.classList.toggle('hidden-by-filter', !show);
                 });
-                if (isOpen) {
-                    item.classList.remove('open');
-                    a.style.maxHeight = null;
-                } else {
-                    item.classList.add('open');
-                    a.style.maxHeight = a.scrollHeight + 'px';
-                }
             });
         });
     </script>
